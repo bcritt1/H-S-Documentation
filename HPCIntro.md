@@ -64,5 +64,25 @@ But what if you want to go somewhere else? Well first we'd want to know where we
 ls -lha
 ```
 I'd get a list of the directory's contents in (l) long form, (h) human-readable format, and (a) all files, even hidden ones, would be listed. For me, that looks like this:
+![ls -lha](/images/lsLHA.png)
+Say we wanted to move into our Documents folder, how would we do that?
 
+That's right!
+ ```
+ cd Documents
+ ```
+ A really nice thing about the terminal is it will autocomplete entries when it can, so if we type "cd Doc" and then press "Tab", it will complete to "Documents"[^1]. Once we're there, we can "ls" again to see what documents are on our systems. Because these are public computers, you'll likely have none, which is a bit of a sad affair. Let's fix that:
+ ```
+ touch myFile.txt
+ ```
+ If we now go into our GUI "Finder", we'll see that even though we made the file in the CLI Terminal, it exists in the GUI. And vice-versa: anything you make in the GUI MacOS will show up and be manipulable in the Terminal. They're just different ways of interacting with the same underlying system!
+ 
+ There are a ton more things you can do in the terminal: it can be very powerful and even do a lot of things higher-level languages that R and Python might struggle with, but now that we have some basics down, let's connect to that supercomputer. For that, we will type
+ ```
+ ssh SUNetid@rice.stanford.edu
+ ```
+ You'll be asked to approve some sort of authentication through the terminal (type "yes" and "Enter"), enter your Stanford password, and complete 2fa (type "1" and "Enter"), at which point you should see a semi-grpahical welcome screen to Farmshare:
+ ![Farmshare](/images/farmshare.png)
+ 
+ [^1]: This autocomplete feature needs at least 3 characters, and will give you options if there are competing answers to your input: "Documents" and "Docker", for instance. To use autocomplete, you'll need to type enough so that there are no alternatives.
 
