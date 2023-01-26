@@ -29,3 +29,40 @@ If you're an old pro, you probably have code that you can run directly in OnDema
 For the non-experts (or those wisely looking for a shortcut), I have also been assembling a library of scripts both for scheduling jobs on Sherlock and for executing common digital humanities tasks [here](NEEED AN HTTPS). They don't work out of the box as they need to be adapted to point to your data, accounts, etc., but they're pretty clear about what you need to complete and where, and thus pretty easy Mad Libs (a rarity in technical documentation, I've found). This is a good option for those of you who can generally read code, but may not be comfortable writing it from scratch. 
 
 For those who are new to coding in general, there are also lots of options that I hope to support and make more central to HPC research at Stanford. The library offers tons of great [courses](https://library.stanford.edu/workshops) on a broad range of subjects specific to computational humanities research. There are also Carpentry [workshops](https://library.stanford.edu/research/carpentries-stanford), but these seem to have gone into hibernation during COVID, and also can tend to focus more on science data and methods that can be hard for beginners to apply to humanities research.
+
+### Actually Running Code: An Interactive Adventure
+
+Before you leave today, you will have run code on a supercomputer. [NO OPEN ONDEMAND ON FARMSHARE RIGHT?]
+
+For this exercise, we're going to be using [Farmshare](https://srcc.stanford.edu/more-about-farmshare), an educational cluster, rather than Sherlock. If you're just learning, you'll probably want to use Farmshare too. Conveniently, you don't even have to request an account: anyone with a Stanford ID can just log-on (we'll cover this in a second). Once you switch to running "real" jobs, though, you'll want to make the switch to Sherlock. An added benefit of switching to Sherlock is that you can take advantage of the OnDemand interface, which I mentioned before allows you to work in RStudio and/or Jupyter. Farmshare, however, will give us a taste of the real, stripped-down HPC experience.
+
+### Computer Interfaces
+
+Most of you only or primarily have experience with Graphical User Interfaces (GUIs), which have dominated the personal computing landscape since (arguably) Windows 95. GUIs largely overtook command-line interfaces (CLIs), at least in consumer markets, though some of you may remember CLIs like MS-DOS, which were still relatively commonplace in the 90s. High-powered computing environments still, however, largely use CLIs due to their simplicity, low resource demands, and their power in the hands of experienced users (like many HPC users). That's all to say that, in order to complete today's exercise, we'll need to learn to use a CLI just a bit.
+
+### SSH and Connecting to Another Machine
+
+You may be surprised to learn that the Mac in front of you is not the supercomputer we're going to be using today. So we need a way to communicate with that supercomputer (Farmshare) to tell it what code we want to run and how to run it. For this, we'll use a small but very useful computer program called Secure Shell Protocol (SSH) that you probably already have installed on your personal computer. The easiest way to use SSH is through the Terminal, another program likely already on your personal computer and, just as likely you've never used (for many of you, it may even still be in your Dock). If we click on the Terminal icon, you will see a command-line interface, which you can think of as just another way of interacting with your computer that doesn't involve visual interfaces like windows, and icons, and docks. 
+
+Here, we pretty much exclusively use text. To demonstrate the Terminal's connection to your machine, though, type the following command:
+```
+pwd
+```
+This is another small Terminal program which stands for "Print Working Directory". When you run it, it will print the directory where you are currently located. In my case, it says something like
+```
+/Users/bcritt
+```
+and in yours it will say something similar. Because we ran pwd as soon as we opened the terminal, this is also our "Home" directory, which you can always get back to by using the program "cd" and giving it the option "~", as in:
+```
+cd ~
+```
+If you type "pwd" again, you'll see you're in the same place, but only because we were already in "Home". If we were elsewhere, we would have been moved here. When you log onto Farmshare, you will be opening a Terminal session on that machine, and where it opens will be your Home directory, and you can always get back there with the above cd command. 
+
+But what if you want to go somewhere else? Well first we'd want to know where we want to go, and I think very few of us even know what the options are at this point. To start figuring that out, let's use another program called "ls", short for "list". If you type "ls" into the Terminal, you'll get a list of everything (more or less) in your current directory (Home). "ls", like many Terminal programs, has different options or flags you can add to it to modify its behavior. If I typed
+
+```
+ls -lha
+```
+I'd get a list of the directory's contents in (l) long form, (h) human-readable format, and (a) all files, even hidden ones, would be listed. For me, that looks like this:
+
+
