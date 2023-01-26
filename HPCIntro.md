@@ -20,7 +20,7 @@ If you do computational research currently, you probably use a high-level langua
 
 That said, HPC resources are primarily designed around the idea of the batch, where an entire script (not just a line in R or a cell in Jupyter) is submitted to a scheduler, [SLURM](https://slurm.schedmd.com/overview.html) in this case, via another script that you write to tell it what resources to devote to the job (how many cores, how much memory, etc.). Because the whole university can use these resources, the scheduler then puts your job in a queue, and it gets sent to the computer in as fair a manner as possible (small jobs can usually jump in front of big ones, users who haven't been hogging resources recently get priority, etc.). What this means in a practical sense is that, if you use this method, you aren't able to do much exploratory visualization, code tinkering, and the like. But if you have code that works and you just need finished outputs, especially from computationally intensive processes (tokenizing texts, geocoding locations, tagging entities, building word vectors), HPC can be great.
 
-## How to do HPC research at Stanford
+## How to do HPC research at Stanford (in the Humanities)
 
 ### Code
 
