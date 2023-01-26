@@ -83,6 +83,7 @@ That's right!
  ```
  You'll be asked to approve some sort of authentication through the terminal (type "yes" and "Enter"), enter your Stanford password, and complete 2fa (type "1" and "Enter"), at which point you should see a semi-grpahical welcome screen to Farmshare:
  ![Farmshare](/images/farmshare.png)
+ The system will tell us we are on login node X, a place from which we can submit jobs to the scheduler, but shouldn't actually run anything intensive. If we use the "pwd" program, we'll see that we are in a very similar place to where we were on our local machines: "home/username". If we ls, though, we'll see we don't have the same familiar Mac set-up of "Documents", "Desktop", etc. We're in our home directory, but on a different machine, which is set up differently. We can still always get back here by using "cd ~", though.
  
  [^1]: This autocomplete feature needs at least 3 characters, and will give you options if there are competing answers to your input: "Documents" and "Docker", for instance. To use autocomplete, you'll need to type enough so that there are no alternatives.
 
