@@ -24,7 +24,7 @@ That said, HPC resources are primarily designed around the idea of the batch, wh
 
 ### Code
 
-If you're an old pro, you probably have code that you can run directly in OnDemand's RStudio or Jupyter, or adapt to run through the SLURM queue. It's my (and the rest of SRC's) job to help you do these things, too, so if you run into any issues, you can reach out to [me](mailto:bcritt@stanford.edu), or submit a ticket [here](mailto:srcc-support@stanford.edu). 
+If you're an old pro, you probably have code that you can run directly in OnDemand's RStudio or Jupyter, or adapt to run through the SLURM queue. It's my (and the rest of SRC's) job to help you do these things, too, so if you run into any issues, you can reach out to [me](mailto:bcritt@stanford.edu), or submit a ticket [here](mailto:srcc-support@stanford.edu). If you're looking to optimize that code to run on the batch system, I'm happy to help, or you can check out the resource in the next paragraph.
 
 For the non-experts (or those wisely looking for a shortcut), I have also been assembling a library of scripts both for scheduling jobs on Sherlock and for executing common digital humanities tasks [here](NEEED AN HTTPS). They don't work out of the box as they need to be adapted to point to your data, accounts, etc., but they're pretty clear about what you need to complete and where, and thus pretty easy Mad Libs (a rarity in technical documentation, I've found). This is a good option for those of you who can generally read code, but may not be comfortable writing it from scratch. 
 
