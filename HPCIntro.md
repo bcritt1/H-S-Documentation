@@ -85,5 +85,37 @@ That's right!
  ![Farmshare](/images/farmshare.png)
  The system will tell us we are on login node X, a place from which we can submit jobs to the scheduler, but shouldn't actually run anything intensive. If we use the "pwd" program, we'll see that we are in a very similar place to where we were on our local machines: "home/username". If we ls, though, we'll see we don't have the same familiar Mac set-up of "Documents", "Desktop", etc. We're in our home directory, but on a different machine, which is set up differently. We can still always get back here by using "cd ~", though.
  
+ Most of the time, you'll want to operate out of ```SCRATCH``` on an HPC system. Scratch is a fast storage space that is wiped ever XX days to keep it fast; because of this, you'll want to move any outputs or code back to home when you're done with them. See the [Moving Data Section](movingData.md) for more on this. To get to Scratch, we need to cd there. And unlike before, where we cd'ed one level, looked around, and cd'ed again, we can make the move all at once if we know where we're going. For this, we need to go up two levels (going up a level is ".." in Terminal-speak), then down to our personal scratch folder: ```scratch/users/<yourusername>```. 
+ ![Scratch](/images/scratch.png)
+ Now that we're here, we need to create the files that we're going to send to Sherlock. The first thing we need is an sbatch script, which we use to communicate with Sherlock and tell it how we want it to run our script. While you can create this script on your local computer and upload it to Sherlock, it's easiest to just make it here. For that, we'll use another Terminal program, nano, which is a very simple text editor (like a non-GUI Notepad). To do this, we type ```nano test.sbatch``` into the terminal, which basically says "Use nano to create a file called "test.sbatch" and open it." At this point, you'll see the screen change, and you'll be looking at what is essentially an open document, just like when you a new file in Word. Since you can't click around, though, there are a bunch of keyboard shortcuts on the bottom. For now, though, we just want to copy the code below and paste it into the file.
+ ```
+ #!/usr/bin/bash
+#SBATCH --job-name=test_job
+#SBATCH --output=test_job.%j.out
+#SBATCH --error=test_job.%j.err
+#SBATCH --time=10:00
+#SBATCH -p normal
+#SBATCH -c 1
+#SBATCH --mem=8GB
+module load python/3.6.1
+module load py-numpy/1.19.2_py36
+python3 mycode.py
+ ```
+ ![nano](/images/nano.png)
+ 
+ To extrapolate, here's what all of this means:
+  ```
+ #!/usr/bin/bash   (tells the computer this is a bash script and how to run it)
+#SBATCH --job-name=test_job  (gives the job a name. if you run a long program, you can type "squeue" into the terminal and check on your job's progress by this name.)
+#SBATCH --output=test_job.%j.out (gives a name to your output file. You can direct this elsewhere by giving it a file path: ../../home/bcritt/testjob.out.)
+#SBATCH --error=test_job.%j.err (a file that outputs any errors your script encounters. Good if something goes wrong.)
+#SBATCH --time=10:00 (sets a time limit for your job.)
+#SBATCH -p normal (tells Sherlock which partition to use. As a free user, you will use normal in most instances.)
+#SBATCH -c 1 (number of cores to use.)
+#SBATCH --mem=8GB (amount of RAM to use.)
+module load python/3.6.1 (instead of loading modules in your python script, in an hpc environment, you load them in the sbatch file.)
+module load py-numpy/1.19.2_py36
+python3 mycode.py (Invoke the desired script just as you would in the Terminal.)
+ ```
  [^1]: This autocomplete feature needs at least 3 characters, and will give you options if there are competing answers to your input: "Documents" and "Docker", for instance. To use autocomplete, you'll need to type enough so that there are no alternatives.
 
