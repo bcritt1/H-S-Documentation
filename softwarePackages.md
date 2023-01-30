@@ -13,10 +13,10 @@ and very well-suited for rapid prototyping.
 
 The following documentation is specifically intended for using Python on
 Sherlock. For more complete documentation about Python in general, please see
-the [Python documentation][url_python_docs].
+the [Python documentation](https://www.python.org/doc/).
 
 
-## Python on Sherlock
+## Python on Sherlock [[NEED TO UPDATE THIS FOR CURRENT VERSIONS]]
 
 Sherlock features multiple versions of Python (currently `2.7` and `3.6`).
 
@@ -28,13 +28,13 @@ the other.
 
 You can load either version on Sherlock by doing the following commands:
 
-``` shell
+```shell
 $ ml python/2.7.13
 ```
 
 or
 
-``` shell
+```shell
 $ ml python/3.6.1
 ```
 
