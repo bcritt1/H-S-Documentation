@@ -77,6 +77,7 @@ That's right!
  ```
  If we now go into our GUI "Finder", we'll see that even though we made the file in the CLI Terminal, it exists in the GUI. And vice-versa: anything you make in the GUI MacOS will show up and be manipulable in the Terminal. They're just different ways of interacting with the same underlying system!
  
+ ##Logging In and Moving Around
  There are a ton more things you can do in the terminal: it can be very powerful and even do a lot of things higher-level languages that R and Python might struggle with, but now that we have some basics down, let's connect to that supercomputer. For that, we will type
  ```
  ssh SUNetid@rice.stanford.edu
@@ -87,6 +88,8 @@ That's right!
  
  Most of the time, you'll want to operate out of ```SCRATCH``` on an HPC system. Scratch is a fast storage space that is wiped ever XX days to keep it fast; because of this, you'll want to move any outputs or code back to home when you're done with them. See the [Moving Data Section](movingData.md) for more on this. To get to Scratch, we need to cd there. And unlike before, where we cd'ed one level, looked around, and cd'ed again, we can make the move all at once if we know where we're going. For this, we need to go up two levels (going up a level is ".." in Terminal-speak), then down to our personal scratch folder: ```scratch/users/<yourusername>```. 
  ![Scratch](/images/scratch.png)
+ 
+ ##Creating and Submitting a Job
  Now that we're here, we need to create the files that we're going to send to Sherlock. The first thing we need is an sbatch script, which we use to communicate with Sherlock and tell it how we want it to run our script. While you can create this script on your local computer and upload it to Sherlock, it's easiest to just make it here. For that, we'll use another Terminal program, nano, which is a very simple text editor (like a non-GUI Notepad). To do this, we type ```nano test.sbatch``` into the terminal, which basically says "Use nano to create a file called "test.sbatch" and open it." At this point, you'll see the screen change, and you'll be looking at what is essentially an open document, just like when you a new file in Word. Since you can't click around, though, there are a bunch of keyboard shortcuts on the bottom. For now, though, we just want to copy the code below and paste it into the file.
  ```
  #!/usr/bin/bash
@@ -98,7 +101,6 @@ That's right!
 #SBATCH -c 1
 #SBATCH --mem=8GB
 module load python/3.6.1
-module load py-numpy/1.19.2_py36
 python3 mycode.py
  ```
  ![nano](/images/nano.png)
@@ -113,9 +115,23 @@ python3 mycode.py
 #SBATCH -p normal (tells Sherlock which partition to use. As a free user, you will use normal in most instances.)
 #SBATCH -c 1 (number of cores to use.)
 #SBATCH --mem=8GB (amount of RAM to use.)
-module load python/3.6.1 (instead of loading modules in your python script, in an hpc environment, you load them in the sbatch file.)
-module load py-numpy/1.19.2_py36
 python3 mycode.py (Invoke the desired script just as you would in the Terminal.)
  ```
+ At this point, we can leave this file: we do so by pressing ```Ctrl + O```, ```Enter```, and ```Crtl + X```. "O" writes out or saves, and "X" exits. You'll be returned to the terminal and if you want, you can ls to see your newly created sbatch file. Using "nano" and the file name would open it again for editing.[^2]
+ 
+ If you're ready to proceed now, though, we'll use nano to create a new python script instead. How would we do that?
+ 
+ When you've created a file called mycode.py (the name referenced in the sbatch file), insert the following python code:
+ ```
+ print('Hello, world!')
+ ```
+ Then write out and exit the file. At this point, we can submit our job to the queue using 
+ ```
+ sbatch test.sbatch
+ ```
+ Doing so should output a job ID for you in the terminal. On Sherlock, you can check the status of your job using ```squeue -u $USER```, which will show all your jobs by ID number, tell you whether your job is pending (PD) or running (R), and give you further details on the job. [[[SCREENSHOT]]]. Because Farmshare isn't a live research environment, there's rarely a queue to show this function, but you will definitely need to use ```squeue``` to monitor your jobs on Sherlock.
+ 
+ Because of the batch system, outputs are not handled the same way as when you run a python script on your personal computer. In an interactive session, outputs (usually of cells, not entire scripts) are immediately displayed on your screen. Because there are lots of intermediary outputs and your job may not run right away, outputs are instead routed to the file we designated in our sbatch script (testjob%j.out [%j here is a variable for job number: the number you just saw will be automatically added to this file's name so you can keep the files straight when you submit multiple jobs]). So to see our output, we can type ```cat test_job.*****.out```, where the \*'s stand for the job number assigned to you by the system. If everything went correctly, you should see "Hello, world!" in the terminal. This means that our sbatch script submitted our python script to Farmshare, which ran the python code and outputted "Hello, world!" to the \*.out file. Congratulations, you just ran your first script in an HPC environment!
  [^1]: This autocomplete feature needs at least 3 characters, and will give you options if there are competing answers to your input: "Documents" and "Docker", for instance. To use autocomplete, you'll need to type enough so that there are no alternatives.
+ [^2]: Note that if you want a specific version of python (or other software), you would load them here instead of in your python script (eg: ```module load python/3.6.1```. Packages are installed via [pip](pythonPackages.md) 
 
