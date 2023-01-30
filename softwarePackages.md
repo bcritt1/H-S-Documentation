@@ -38,7 +38,7 @@ or
 $ ml python/3.6.1
 ```
 
-!!! warning "The Python3 interpreter is `python3`"
+!!!warning "The Python3 interpreter is `python3`"
 
     The Python3 executable is named `python3`, not `python`. So, once you have
     the "python/3.6.1" module loaded on Sherlock, you will need to use
