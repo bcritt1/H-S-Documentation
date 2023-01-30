@@ -1,8 +1,7 @@
-#Software Packages
+# Software Packages
 
-##Python
-###Adding a package in Python
-## Introduction
+## Python
+### Introduction
 
 [Python][url_python] is an interpreted high-level programming language for
 general-purpose programming. Its design philosophy emphasizes code readability,
