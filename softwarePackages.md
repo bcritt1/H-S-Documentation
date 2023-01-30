@@ -38,79 +38,18 @@ or
 $ ml python/3.6.1
 ```
 
-***Warning*** 
-"The Python3 interpreter is `python3`"
-
-    The Python3 executable is named `python3`, not `python`. So, once you have
-    the "python/3.6.1" module loaded on Sherlock, you will need to use
-    `python3` to invoke the proper interpreter. `python` will still refer to
-    the default, older system-level Python installation, and may result in
-    errors when trying to run Python3 code.
-
-    This is an upstream decision detailled in [PEP-394][url_pep394], not
-    something specific to Sherlock.
-
-
-### Using Python
+### Using Python Interactively
 
 Once your environment is configured (ie. when the Python module is loaded),
 Python can be started by simply typing `python` at the shell prompt:
 
-``` shell
+```shell
 $ python
 Python 2.7.13 (default, Apr 27 2017, 14:19:21)
 [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
-
-
-### Python in batch jobs
-
-!!! info "Python output is buffered by default"
-
-    By default, Python buffers console output. It means that when running
-    Python in a batch job through Slurm, you may see output less often than you
-    would when running interactively.
-
-When output is being buffered, the `print` statements are aggregated until
-there is a enough data to print, and then the messages are all printed at once.
-And as a consequence, job output files (as specified with the `--output` and
-`--error` job submission options) will be refeshed less often and may give the
-impression that the job is not running.
-
-For debugging or checking that a Python script is producing the correct output,
-you may want to switch off buffering.
-
-#### Switching  off buffering
-
-For a single python script you can use the `-u` option, as in `python -u
-my_script.py`. The `-u` option stands for "unbuffered".
-
-For instance:
-
-```shell
-#!/bin/bash
-#SBATCH -n 1
-
-python -u my_script.py
-```
-
-!!! tip
-
-    You can also use the environment variable `PYTHONUNBUFFERED` to set
-    unbuffered I/O for your whole batch script.
-    ```shell
-    #!/bin/bash
-    #SBATCH -n 1
-
-    export PYTHONUNBUFFERED=True
-    python my_script.py
-    ```
-
-NB: There is some performance penalty for having unbuffered print statements, so
-you may want to reduce the number of print statements, or run buffered for
-production runs.
 
 ### Python packages
 
