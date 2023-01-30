@@ -18,13 +18,13 @@ the [Python documentation](https://www.python.org/doc/).
 
 ## Python on Sherlock [[NEED TO UPDATE THIS FOR CURRENT VERSIONS]]
 
-Sherlock features multiple versions of Python (currently `2.7` and `3.6`).
+Sherlock will always have a recent, stable version of Python loaded by default. Using the python3 invocation will cause your script to be run with this default Python version. 
 
-Some applications only work with legacy features of version 2.x, while more
-recent code will require specific version 3.x features.  [Modules on
-Sherlock][url_modules] may only be available in a single flavor (as denoted by
-their suffix: `_py27` or `_py36`, because the application only supports one or
-the other.
+You may, however, have an old script you want to run, or a script that relies on dependencies that have not been updated to more recent versions of Python. In these and other cases, you may need to run your script with an earlier version of Python. You can see which Python versions are available by typing 
+```shell
+$ ml spider python
+```
+[[[NEED SCREENSHOT, NO PYTHON VERSIONS ON FARMSHARE]]]
 
 You can load either version on Sherlock by doing the following commands:
 
@@ -36,19 +36,6 @@ or
 
 ```shell
 $ ml python/3.6.1
-```
-
-### Using Python Interactively
-
-Once your environment is configured (ie. when the Python module is loaded),
-Python can be started by simply typing `python` at the shell prompt:
-
-```shell
-$ python
-Python 2.7.13 (default, Apr 27 2017, 14:19:21)
-[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux2
-Type "help", "copyright", "credits" or "license" for more information.
->>>
 ```
 
 ### Python packages
@@ -78,7 +65,9 @@ For instance, NumPy modules are:
 * [`py-numpy/1.14.3_py36`][url_module_numpy]
 
 
-You can list all available module versions for a package with `ml spider
+You can list all available module versions for a package with `ml 
+
+
 <package_name>`. For instance:
 
 ``` shell
@@ -142,95 +131,7 @@ won't interfere with each other, but also that if you need to use a package
 with both Python 2.x and 3.x, you'll need to install it twice, once for each
 Python version.
 
-##### List installed packages
-
-You can easily see the list of the Python packages installed in your
-environment, and their location, with `pip list`:
-
-``` shell
-$ pip list -v
-Package    Version Location                                                            Installer
----------- ------- ------------------------------------------------------------------- ---------
-pip        18.1    /share/software/user/open/python/2.7.13/lib/python2.7/site-packages pip
-setuptools 28.8.0  /share/software/user/open/python/2.7.13/lib/python2.7/site-packages pip
-urllib3    1.24    /home/users/kilian/.local/lib/python2.7/site-packages               pip
-virtualenv 15.1.0  /share/software/user/open/python/2.7.13/lib/python2.7/site-packages pip
-```
-
-
-##### Alternative installation path
-
-!!! warning "Python paths"
-
-    While theoretically possible, installing Python packages in alternate
-    locations can be tricky, so we recommend trying to stick to the `pip
-    install --user` way as often as possible. But in case you absolutely need
-    it, we provide some guidelines below.
-
-
-One common case of needing to install Python packages in alternate locations is
-to share those packages with a group of users. Here's an example that will show
-how to install the `urllib3` Python package in a group-shared location and let
-users from the group use it without having to install it themselves.
-
-First, you need to create a directory to store those packages. We'll put it in
-`$GROUP_HOME`:
-
-``` shell
-$ mkdir -p $GROUP_HOME/python/
-```
-
-Then, we load the Python module we need, and we instruct `pip` to install its
-packages in the directory we just created:
-
-``` shell
-$ ml python/2.7.13
-$ PYTHONUSERBASE=$GROUP_HOME/python pip install --user urllib3
-```
-
-We still use the `--user` option, but with `PYTHONUSERBASE` pointing to a
-different directory, `pip` will install packages there.
-
-Now, to be able to use that Python module, since it's not been installed in a
-default directory, you (and all the members of the group who will want to use
-that module) need to set their `PYTHONPATH` to include our new shared
-directory[^pythonpath]:
-
-``` shell
-$ export PYTHONPATH=$GROUP_HOME/python/lib/python2.7/site-packages:$PYTHONPATH
-```
-
-And now, the module should be visible:
-
-``` shell
-$ pip list -v
-Package    Version Location                                                            Installer
----------- ------- ------------------------------------------------------------------- ---------
-pip        18.1    /share/software/user/open/python/2.7.13/lib/python2.7/site-packages pip
-setuptools 28.8.0  /share/software/user/open/python/2.7.13/lib/python2.7/site-packages pip
-urllib3    1.24    /home/groups/ruthm/python/lib/python2.7/site-packages               pip
-virtualenv 15.1.0  /share/software/user/open/python/2.7.13/lib/python2.7/site-packages pip
-```
-
-!!! tip "`$PYTHONPATH` depends on the Python version"
-
-    The `$PYTHONPATH` environment variable is dependent on the Python version
-    you're using, so for Python 3.6, it should include
-    `$GROUP_HOME/python/lib/python3.6/site-packages`
-
-!!! info "`$PATH` may also need to be updated"
-
-    Some Python package sometimes also install executable scripts. To
-    make them easily accessible in your environment, you may also want to
-    modify your `$PATH` to include their installation directory.
-
-    For instance, if you installed Python packages in `$GROUP_HOME/python`:
-    ```
-    $ export PATH=$GROUP_HOME/python/bin:$PATH
-    ```
-
-
-##### Installing from GitHub
+ ##### Installing from GitHub
 
 `pip` also supports installing packages from a variety of sources, including
 GitHub repositories.
@@ -291,6 +192,21 @@ $ pip uninstall <package_name>
 $ pip uninstall -r requirements.txt
 ```
 
+##### List installed packages
+
+You can easily see the list of the Python packages installed in your
+environment, and their location, with `pip list`:
+
+``` shell
+$ pip list -v
+Package    Version Location                                                            Installer
+---------- ------- ------------------------------------------------------------------- ---------
+pip        18.1    /share/software/user/open/python/2.7.13/lib/python2.7/site-packages pip
+setuptools 28.8.0  /share/software/user/open/python/2.7.13/lib/python2.7/site-packages pip
+urllib3    1.24    /home/users/kilian/.local/lib/python2.7/site-packages               pip
+virtualenv 15.1.0  /share/software/user/open/python/2.7.13/lib/python2.7/site-packages pip
+```
+
 
 
 [comment]: #  (link URLs -----------------------------------------------------)
@@ -316,9 +232,6 @@ $ pip uninstall -r requirements.txt
 
 [^pythonpath]: This line can also be added to a user's `~/.profile` file, for a
   more permanent setting.
-
-
---8<--- "includes/_acronyms.md"
 
 
 ## R
