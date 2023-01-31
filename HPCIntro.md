@@ -41,45 +41,52 @@ Most of you only or primarily have experience with Graphical User Interfaces (GU
 You may be surprised to learn that the Mac in front of you is not the supercomputer we're going to be using today. So we need a way to communicate with that supercomputer (Farmshare) to tell it what code we want to run and how to run it. For this, we'll use a small but very useful computer program called Secure Shell Protocol (SSH) that you probably already have installed on your personal computer. The easiest way to use SSH is through the Terminal, another program likely already on your personal computer and, just as likely you've never used (for many of you, it may even still be in your Dock). If we click on the Terminal icon, you will see a command-line interface, which you can think of as just another way of interacting with your computer that doesn't involve visual interfaces like windows, and icons, and docks. 
 
 Here, we pretty much exclusively use text. To demonstrate the Terminal's connection to your machine, though, type the following command:
+
 ```
 pwd
 ```
+
 This is another small Terminal program which stands for "Print Working Directory". When you run it, it will print the directory where you are currently located. In my case, it says something like
+
 ```
 /Users/bcritt
 ```
+
 and in yours it will say something similar. Because we ran pwd as soon as we opened the terminal, this is also our "Home" directory, which you can always get back to by using the program "cd" and giving it the option "~", as in:
+
 ```
 cd ~
 ```
+
 If you type "pwd" again, you'll see you're in the same place, but only because we were already in "Home". If we were elsewhere, we would have been moved here. When you log onto Farmshare, you will be opening a Terminal session on that machine, and where it opens will be your Home directory, and you can always get back there with the above cd command. 
 
-But what if you want to go somewhere else? Well first we'd want to know where we want to go, and I think very few of us even know what the options are at this point. To start figuring that out, let's use another program called "ls", short for "list". If you type "ls" into the Terminal, you'll get a list of everything (more or less) in your current directory (Home). "ls", like many Terminal programs, has different options or flags you can add to it to modify its behavior. If I typed
-
-```
-ls -lha
-```
-I'd get a list of the directory's contents in (l) long form, (h) human-readable format, and (a) all files, even hidden ones, would be listed. For me, that looks like this:
+But what if you want to go somewhere else? Well first we'd want to know where we want to go, and I think very few of us even know what the options are at this point. To start figuring that out, let's use another program called "ls", short for "list". If you type "ls" into the Terminal, you'll get a list of everything (more or less) in your current directory (Home). "ls", like many Terminal programs, has different options or flags you can add to it to modify its behavior. If I typed ```ls -lha```, I'd get a list of the directory's contents in (l) long form, (h) human-readable format, and (a) all files, even hidden ones, would be listed. For me, that looks like this:
 
 ![ls -lha](/images/lsLHA.png)
 
 Say we wanted to move into our Documents folder, how would we do that?
 
 That's right!
+
  ```
  cd Documents
  ```
+ 
  A really nice thing about the terminal is it will autocomplete entries when it can, so if we type "cd Doc" and then press "Tab", it will complete to "Documents"[^1]. Once we're there, we can "ls" again to see what documents are on our systems. Because these are public computers, you'll likely have none, which is a bit of a sad affair. Let's fix that:
+ 
  ```
  touch myFile.txt
  ```
+ 
  If we now go into our GUI "Finder", we'll see that even though we made the file in the CLI Terminal, it exists in the GUI. And vice-versa: anything you make in the GUI MacOS will show up and be manipulable in the Terminal. They're just different ways of interacting with the same underlying system!
  
  ##Logging In and Moving Around
  There are a ton more things you can do in the terminal: it can be very powerful and even do a lot of things higher-level languages that R and Python might struggle with, but now that we have some basics down, let's connect to that supercomputer. For that, we will type
+ 
  ```
  ssh SUNetid@rice.stanford.edu
  ```
+ 
  You'll be asked to approve some sort of authentication through the terminal (type "yes" and "Enter"), enter your Stanford password, and complete 2fa (type "1" and "Enter"), at which point you should see a semi-grpahical welcome screen to Farmshare:
  
  ![Farmshare](/images/farmshare.png)
@@ -93,6 +100,7 @@ That's right!
  ### Creating and Submitting a Job
  
  Now that we're here, we need to create the files that we're going to send to Sherlock. The first thing we need is an sbatch script, which we use to communicate with Sherlock and tell it how we want it to run our script. While you can create this script on your local computer and upload it to Sherlock, it's easiest to just make it here. For that, we'll use another Terminal program, nano, which is a very simple text editor (like a non-GUI Notepad). To do this, we type ```nano test.sbatch``` into the terminal, which basically says "Use nano to create a file called "test.sbatch" and open it." At this point, you'll see the screen change, and you'll be looking at what is essentially an open document, just like when you a new file in Word. Since you can't click around, though, there are a bunch of keyboard shortcuts on the bottom. For now, though, we just want to copy the code below and paste it into the file.
+ 
  ```
  #!/usr/bin/bash
 #SBATCH --job-name=test_job
@@ -105,9 +113,11 @@ That's right!
 module load python/3.6.1
 python3 mycode.py
  ```
+ 
  ![nano](/images/nano.png)
  
  To extrapolate, here's what all of this means:
+ 
   ```
  #!/usr/bin/bash   (tells the computer this is a bash script and how to run it)
 #SBATCH --job-name=test_job  (gives the job a name. if you run a long program, you can type "squeue" into the terminal and check on your job's progress by this name.)
@@ -119,18 +129,23 @@ python3 mycode.py
 #SBATCH --mem=8GB (amount of RAM to use.)
 python3 mycode.py (Invoke the desired script just as you would in the Terminal.)
  ```
+ 
  At this point, we can leave this file: we do so by pressing ```Ctrl + O```, ```Enter```, and ```Crtl + X```. "O" writes out or saves, and "X" exits. You'll be returned to the terminal and if you want, you can ls to see your newly created sbatch file. Using "nano" and the file name would open it again for editing.[^2]
  
  If you're ready to proceed now, though, we'll use nano to create a new python script instead. How would we do that?
  
  When you've created a file called mycode.py (the name referenced in the sbatch file), insert the following python code:
+ 
  ```
  print('Hello, world!')
  ```
+ 
  Then write out and exit the file. At this point, we can submit our job to the queue using 
+ 
  ```
  sbatch test.sbatch
  ```
+ 
  Doing so should output a job ID for you in the terminal. On Sherlock, you can check the status of your job using ```squeue -u $USER```, which will show all your jobs by ID number, tell you whether your job is pending (PD) or running (R), and give you further details on the job. [[[SCREENSHOT]]]. Because Farmshare isn't a live research environment, there's rarely a queue to show this function, but you will definitely need to use ```squeue``` to monitor your jobs on Sherlock.
  
  Because of the batch system, outputs are not handled the same way as when you run a python script on your personal computer. In an interactive session, outputs (usually of cells, not entire scripts) are immediately displayed on your screen. Because there are lots of intermediary outputs and your job may not run right away, outputs are instead routed to the file we designated in our sbatch script (testjob%j.out [%j here is a variable for job number: the number you just saw will be automatically added to this file's name so you can keep the files straight when you submit multiple jobs]). So to see our output, we can type ```cat test_job.*****.out```, where the \*'s stand for the job number assigned to you by the system. If everything went correctly, you should see "Hello, world!" in the terminal. This means that our sbatch script submitted our python script to Farmshare, which ran the python code and outputted "Hello, world!" to the \*.out file. Congratulations, you just ran your first script in an HPC environment!
