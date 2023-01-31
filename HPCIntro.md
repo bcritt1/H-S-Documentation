@@ -166,6 +166,8 @@ python3 mycode.py (Invoke the desired script just as you would in the Terminal.)
  
  This will rsync (transfer) all the files in the "Test" directory, after archiving (a) the files recursively (r), by connecting to Farmshare with your login information. Because you're actually logging into the system to do this transfer, you will likely need to supply your password, accept the certificate, do 2FA, etc. again. But once that's done, if you switch over to your Farmshare terminal window, ```cd ~```, and ```ls```, you should now see your "Test" directory on Farmshare, and are now able to ```mv``` it around there as necessary (to "Scratch," say).
  
+ ![testDir](/images/testDir.png)
+ 
  [^1]: This autocomplete feature needs at least 3 characters, and will give you options if there are competing answers to your input: "Documents" and "Docker", for instance. To use autocomplete, you'll need to type enough so that there are no alternatives.
  [^2]: Note that if you want a specific version of python (or other software), you would load them here instead of in your python script (eg: ```module load python/3.6.1```. Packages are installed via [pip](pythonPackages.md) 
 
