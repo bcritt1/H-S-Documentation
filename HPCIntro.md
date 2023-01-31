@@ -84,9 +84,11 @@ That's right!
  ```
  You'll be asked to approve some sort of authentication through the terminal (type "yes" and "Enter"), enter your Stanford password, and complete 2fa (type "1" and "Enter"), at which point you should see a semi-grpahical welcome screen to Farmshare:
  ![Farmshare](/images/farmshare.png)
- The system will tell us we are on login node X, a place from which we can submit jobs to the scheduler, but shouldn't actually run anything intensive. If we use the "pwd" program, we'll see that we are in a very similar place to where we were on our local machines: "home/username". If we ls, though, we'll see we don't have the same familiar Mac set-up of "Documents", "Desktop", etc. We're in our home directory, but on a different machine, which is set up differently. We can still always get back here by using "cd ~", though.
+ 
+ The system will tell us we are on login node X, a place from which we can submit jobs to the scheduler, but shouldn't actually run anything intensive. If we use the ```pwd``` program, we'll see that we are in a very similar place to where we were on our local machines: "home/username". If we ```ls```, though, we'll see we don't have the same familiar Mac set-up of "Documents", "Desktop", etc. We're in our home directory, but on a remote machine running Linux. We can still always get back home by using ```cd ~```, though.
  
  Most of the time, you'll want to operate out of ```SCRATCH``` on an HPC system. Scratch is a fast storage space that is wiped ever XX days to keep it fast; because of this, you'll want to move any outputs or code back to home when you're done with them. See the [Moving Data Section](movingData.md) for more on this. To get to Scratch, we need to cd there. And unlike before, where we cd'ed one level, looked around, and cd'ed again, we can make the move all at once if we know where we're going. For this, we need to go up two levels (going up a level is ".." in Terminal-speak), then down to our personal scratch folder: ```scratch/users/<yourusername>```. 
+ 
  ![Scratch](/images/scratch.png)
  
  ##Creating and Submitting a Job
