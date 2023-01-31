@@ -156,6 +156,16 @@ python3 mycode.py (Invoke the desired script just as you would in the Terminal.)
  
  There are many ways to transfer data between local and remote machines. Sherlock has a pretty complete guide [here](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). For the purposes of this demonstration, we'll focus on one method, rsync, which balances ease-of-use with technical robustness. The easiest way to use rsync is from your local machine, so you can right click on your Terminal application and click on "New Window". This will open a new terminal session alongside the remote session you have on Farmshare in the other Terminal window. If you ```ls``` in this new window, you should once again see files that live on your personal computer and are familiar to you. Let's make a couple things here that we can transfer to Farmshare to test out the process. First, let's make a directory to contain all our nonsense, which we'll delete when we're done with this. Let's call it "Test" and create it with the command ```mkdir Test```. Then, let's ```cd``` into "Test", and make a directory here that will simulate a dataset. To do this, we type the command ```mkdir Data``` which will make a directory called Data where one might keep a dataset. Let's also say we have an R script we want to use on this data, which we can make by typing ```touch foo.R```. If we ```ls``` here, we'll see we have a directory called "Data" and a file called "foo.R" in the "Test" directory.
  
+ ### Rsync
+ 
+ Now to get this data onto the remote environment. Believe it or not, it only takes a short command:
+ 
+ ```shell
+ rsync -ar ~/Test/ <sunetid>@login.farmshare.stanford.edu:Test/
+ ```
+ 
+ This will rsync (transfer) all the files in the "Test" directory, after archiving (a) the files recursively (r), by connecting to Farmshare with your login information. Because you're actually logging into the system to do this transfer, you will likely need to supply your password, accept the certificate, do 2FA, etc. again. But once that's done, if you switch over to your Farmshare terminal window, ```cd ~```, and ```ls```, you should now see your "Test" directory on Farmshare, and are now able to ```mv``` it around there as necessary (to "Scratch," say).
+ 
  [^1]: This autocomplete feature needs at least 3 characters, and will give you options if there are competing answers to your input: "Documents" and "Docker", for instance. To use autocomplete, you'll need to type enough so that there are no alternatives.
  [^2]: Note that if you want a specific version of python (or other software), you would load them here instead of in your python script (eg: ```module load python/3.6.1```. Packages are installed via [pip](pythonPackages.md) 
 
