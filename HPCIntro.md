@@ -1,28 +1,24 @@
 # Stanford Research Computing Center and the Humanities
 
-## What is High-Performance Computing?
-
-### About Stanford Research Computing Center
+## About Stanford Research Computing Center
 
 Stanford Research Computing Center ([SRCC](https://srcc.stanford.edu/) builds, manages, and supports Stanford's High-Performance Computing ([HPC](https://en.wikipedia.org/wiki/High-performance_computing) resources. For researchers in H&S, these resources primarily consist of [Sherlock](https://srcc.stanford.edu/sherlock-high-performance-computing-cluster), a computing cluster made up of nearly 50,000 CPU cores, provided both by Stanford centrally and researchers who contribute hardware to the cluster. These resources are free to use for Stanford researchers.
 
 While we work a lot with the folks in the S of H&S, we've had limited engagement with you H's. It's my hope to change that.
 
-### Why use High-Performance Computing?
+## Why use High-Performance Computing?
 
 The simple answer is, you may not need to. If you don't do computational research, obviously, you don't need to compute in a high-performance environment. If you do comptutational research, but your personal machine works for you what you do, you may not need HPC either, though there may be some other reasons to get on HPC beyond pure compute power. You definitely should think about moving to HPC if you're doing computational research and working at a scale that your personal computer struggles or fails to handle it. A typical Sherlock node has about 250x the CPUs and RAM of the average Macbook Pro, and even more can be accessed in special circumstances. In short, you can do things on HPC that you simply cannot do on a personal computer.
 
 But there are other reasons to get on Sherlock, even if you're not a power user. If you do computational research with students or a team, Sherlock offers 1 TB of free, shared storage to teams: this can be really convenient if folks need to be working on the same files and it's proving a pain to pass them back and forth, coordinate usage, etc. [It's also a good learning environment?????] [OTHER REASONS?]
 
-### Key Differences from Personal Computing
+## Key Differences from Personal Computing
 
 If you do computational research currently, you probably use a high-level language like R or Python, in an Integrated Development Environment (IDE) like RStudio or Jupyter Labs, and work with your data interactively, executing individual lines, seeing what comes back, adjusting your code, executing the line again, etc. One of the great things about Sherlock is that you can still work in this way, just with more firepower on the backend. Sherlock's OnDemand interface offers a browser-based, interactive environment where you can work in RStudio or Jupyter Notebooks, send your inputs to Sherlock's clusters and get outputs interactively to your screen in real time. This is a great way to learn about and use HPC without having to learn a new research workflow.
 
 That said, HPC resources are primarily designed around the idea of the batch, where you submit an entire script (not just a line in R or a cell in Jupyter) to a scheduler, [SLURM](https://slurm.schedmd.com/overview.html) in this case, via another script that you write to tell it what resources to devote to the job (how many cores, how much memory, etc.). Because the whole university can use these resources, the scheduler then puts your job in a queue, and it gets sent to the computer in as fair a manner as possible (small jobs can usually jump in front of big ones, users who haven't been hogging resources recently get priority, etc.). What this means in a practical sense is that, if you use this method, you aren't able to do much exploratory visualization, code tinkering, and the like. But if you have code that works and you just need finished outputs, especially from computationally intensive processes (tokenizing texts, geocoding locations, tagging entities, building word vectors), HPC can be great.
 
-## How to do HPC research at Stanford (in the Humanities)
-
-### Code
+## Code
 
 If you're an old pro, you probably have code that you can run directly in OnDemand's RStudio or Jupyter, or adapt to run through the SLURM queue. It's my (and the rest of SRC's) job to help you do these things, too, so if you run into any issues, you can reach out to [me](mailto:bcritt@stanford.edu), or submit a ticket [here](mailto:srcc-support@stanford.edu). If you're looking to optimize that code to run on the batch system, I'm happy to help, or you can check out the resource in the next paragraph.
 
@@ -30,7 +26,7 @@ For the non-experts (or those wisely looking for a shortcut), I have also been a
 
 For those who are new to coding in general, there are also lots of options that I hope to support and make more central to HPC research at Stanford. The library offers tons of great [courses](https://library.stanford.edu/workshops) on a broad range of subjects specific to computational humanities research. There are also Carpentry [workshops](https://library.stanford.edu/research/carpentries-stanford), but these seem to have gone into hibernation during COVID, and also can tend to focus more on science data and methods that can be hard for beginners to apply to humanities research.
 
-### Actually Running Code: An Interactive Adventure
+## Actually Running Code: An Interactive Adventure
 
 Before you leave today, you will have run code on a supercomputer. [NO OPEN ONDEMAND ON FARMSHARE RIGHT?]
 
@@ -64,7 +60,9 @@ But what if you want to go somewhere else? Well first we'd want to know where we
 ls -lha
 ```
 I'd get a list of the directory's contents in (l) long form, (h) human-readable format, and (a) all files, even hidden ones, would be listed. For me, that looks like this:
+
 ![ls -lha](/images/lsLHA.png)
+
 Say we wanted to move into our Documents folder, how would we do that?
 
 That's right!
@@ -83,6 +81,7 @@ That's right!
  ssh SUNetid@rice.stanford.edu
  ```
  You'll be asked to approve some sort of authentication through the terminal (type "yes" and "Enter"), enter your Stanford password, and complete 2fa (type "1" and "Enter"), at which point you should see a semi-grpahical welcome screen to Farmshare:
+ 
  ![Farmshare](/images/farmshare.png)
  
  The system will tell us we are on login node X, a place from which we can submit jobs to the scheduler, but shouldn't actually run anything intensive. If we use the ```pwd``` program, we'll see that we are in a very similar place to where we were on our local machines: "home/username". If we ```ls```, though, we'll see we don't have the same familiar Mac set-up of "Documents", "Desktop", etc. We're in our home directory, but on a remote machine running Linux. We can still always get back home by using ```cd ~```, though.
@@ -91,7 +90,8 @@ That's right!
  
  ![Scratch](/images/scratch.png)
  
- ##Creating and Submitting a Job
+ ### Creating and Submitting a Job
+ 
  Now that we're here, we need to create the files that we're going to send to Sherlock. The first thing we need is an sbatch script, which we use to communicate with Sherlock and tell it how we want it to run our script. While you can create this script on your local computer and upload it to Sherlock, it's easiest to just make it here. For that, we'll use another Terminal program, nano, which is a very simple text editor (like a non-GUI Notepad). To do this, we type ```nano test.sbatch``` into the terminal, which basically says "Use nano to create a file called "test.sbatch" and open it." At this point, you'll see the screen change, and you'll be looking at what is essentially an open document, just like when you a new file in Word. Since you can't click around, though, there are a bunch of keyboard shortcuts on the bottom. For now, though, we just want to copy the code below and paste it into the file.
  ```
  #!/usr/bin/bash
@@ -134,6 +134,7 @@ python3 mycode.py (Invoke the desired script just as you would in the Terminal.)
  Doing so should output a job ID for you in the terminal. On Sherlock, you can check the status of your job using ```squeue -u $USER```, which will show all your jobs by ID number, tell you whether your job is pending (PD) or running (R), and give you further details on the job. [[[SCREENSHOT]]]. Because Farmshare isn't a live research environment, there's rarely a queue to show this function, but you will definitely need to use ```squeue``` to monitor your jobs on Sherlock.
  
  Because of the batch system, outputs are not handled the same way as when you run a python script on your personal computer. In an interactive session, outputs (usually of cells, not entire scripts) are immediately displayed on your screen. Because there are lots of intermediary outputs and your job may not run right away, outputs are instead routed to the file we designated in our sbatch script (testjob%j.out [%j here is a variable for job number: the number you just saw will be automatically added to this file's name so you can keep the files straight when you submit multiple jobs]). So to see our output, we can type ```cat test_job.*****.out```, where the \*'s stand for the job number assigned to you by the system. If everything went correctly, you should see "Hello, world!" in the terminal. This means that our sbatch script submitted our python script to Farmshare, which ran the python code and outputted "Hello, world!" to the \*.out file. Congratulations, you just ran your first script in an HPC environment!
+ 
  [^1]: This autocomplete feature needs at least 3 characters, and will give you options if there are competing answers to your input: "Documents" and "Docker", for instance. To use autocomplete, you'll need to type enough so that there are no alternatives.
  [^2]: Note that if you want a specific version of python (or other software), you would load them here instead of in your python script (eg: ```module load python/3.6.1```. Packages are installed via [pip](pythonPackages.md) 
 
