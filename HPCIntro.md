@@ -123,7 +123,7 @@ python3 ./mycode.py
 #SBATCH --output=test_job.%j.out (gives a name to your output file. You can direct this elsewhere by giving it a file path: ../../home/bcritt/testjob.out.)
 #SBATCH --error=test_job.%j.err (a file that outputs any errors your script encounters. Good if something goes wrong.)
 #SBATCH --time=10:00 (sets a time limit for your job.)
-#SBATCH -p normal (tells Sherlock which partition to use. As a free user, you will use normal in most instances.)
+#SBATCH -p normal (tells Sherlock which partition to use. "Normal" is the default partition for free users, but as an H&S member, you will likely have access to a special partition called "hns" that will likely be faster to schedule. You can check which partitions you can use with the terminal command sh_part and change "normal" to "hns" if desired.)
 #SBATCH -c 1 (number of cores to use.)
 #SBATCH --mem=8GB (amount of RAM to use.)
 python3 ./mycode.py (Invoke the desired script just as you would in the Terminal.)
