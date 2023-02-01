@@ -87,7 +87,7 @@ That's right!
  ssh SUNetid@rice.stanford.edu
  ```
  
- You'll be asked to approve some sort of authentication through the terminal (type "yes" and "Enter"), enter your Stanford password, and complete 2fa (type "1" and "Enter"), at which point you should see a semi-grpahical welcome screen to Farmshare:
+ You'll be asked to approve some sort of authentication through the terminal (type "yes" and "Enter"), enter your Stanford password, and complete 2fa (type "1" and "Enter"), at which point you should see a semi-graphical welcome screen to Farmshare:
  
  ![Farmshare](/images/farmshare.png)
  
@@ -110,7 +110,6 @@ That's right!
 #SBATCH -p normal
 #SBATCH -c 1
 #SBATCH --mem=8GB
-module load python/3.6.1
 python3 mycode.py
  ```
  
