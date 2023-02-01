@@ -102,7 +102,7 @@ That's right!
  Now that we're here, we need to create the files that we're going to send to Sherlock. The first thing we need is an sbatch script, which we use to communicate with Sherlock and tell it how we want it to run our script. While you can create this script on your local computer and upload it to Sherlock, it's easiest to just make it here. For that, we'll use another Terminal program, nano, which is a very simple text editor (like a non-GUI Notepad). To do this, we type ```nano test.sbatch``` into the terminal, which basically says "Use nano to create a file called "test.sbatch" and open it." At this point, you'll see the screen change, and you'll be looking at what is essentially an open document, just like when you a new file in Word. Since you can't click around, though, there are a bunch of keyboard shortcuts on the bottom. For now, though, we just want to copy the code below and paste it into the file.
  
  ```
- #!/usr/bin/bash
+#!/bin/bash
 #SBATCH --job-name=test_job
 #SBATCH --output=test_job.%j.out
 #SBATCH --error=test_job.%j.err
@@ -110,7 +110,7 @@ That's right!
 #SBATCH -p normal
 #SBATCH -c 1
 #SBATCH --mem=8GB
-python3 mycode.py
+python3 ./mycode.py
  ```
  
  ![nano](/images/nano.png)
@@ -126,7 +126,7 @@ python3 mycode.py
 #SBATCH -p normal (tells Sherlock which partition to use. As a free user, you will use normal in most instances.)
 #SBATCH -c 1 (number of cores to use.)
 #SBATCH --mem=8GB (amount of RAM to use.)
-python3 mycode.py (Invoke the desired script just as you would in the Terminal.)
+python3 ./mycode.py (Invoke the desired script just as you would in the Terminal.)
  ```
  
  At this point, we can leave this file: we do so by pressing ```Ctrl + O```, ```Enter```, and ```Crtl + X```. "O" writes out or saves, and "X" exits. You'll be returned to the terminal and if you want, you can ls to see your newly created sbatch file. Using "nano" and the file name would open it again for editing.[^2]
@@ -147,7 +147,13 @@ python3 mycode.py (Invoke the desired script just as you would in the Terminal.)
  
  Doing so should output a job ID for you in the terminal. On Sherlock, you can check the status of your job using ```squeue -u $USER```, which will show all your jobs by ID number, tell you whether your job is pending (PD) or running (R), and give you further details on the job. [[[SCREENSHOT]]]. Because Farmshare isn't a live research environment, there's rarely a queue to show this function, but you will definitely need to use ```squeue``` to monitor your jobs on Sherlock.
  
- Because of the batch system, outputs are not handled the same way as when you run a python script on your personal computer. In an interactive session, outputs (usually of cells, not entire scripts) are immediately displayed on your screen. Because there are lots of intermediary outputs and your job may not run right away, outputs are instead routed to the file we designated in our sbatch script (testjob%j.out [%j here is a variable for job number: the number you just saw will be automatically added to this file's name so you can keep the files straight when you submit multiple jobs]). So to see our output, we can type ```cat test_job.*****.out```, where the \*'s stand for the job number assigned to you by the system. If everything went correctly, you should see "Hello, world!" in the terminal. This means that our sbatch script submitted our python script to Farmshare, which ran the python code and outputted "Hello, world!" to the \*.out file. Congratulations, you just ran your first script in an HPC environment!
+ Because of the batch system, outputs are not handled the same way as when you run a python script on your personal computer. In an interactive session, outputs (usually of cells, not entire scripts) are immediately displayed on your screen. Because there are lots of intermediary outputs and your job may not run right away, outputs are instead routed to the file we designated in our sbatch script (testjob%j.out [%j here is a variable for job number: the number you just saw will be automatically added to this file's name so you can keep the files straight when you submit multiple jobs]). So to see our output, we can type
+ 
+ ```
+ cat test_job.*****.out
+ ```
+ 
+ where the \*'s stand for the job number assigned to you by the system. If everything went correctly, you should see "Hello, world!" in the terminal. This means that our sbatch script submitted our python script to Farmshare, which ran the python code and outputted "Hello, world!" to the \*.out file. Congratulations, you just ran your first script in an HPC environment!
  
  ## Data Transfer
  
