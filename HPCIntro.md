@@ -129,6 +129,8 @@ python3 ./mycode.py
 python3 ./mycode.py (Invoke the desired script just as you would in the Terminal.)
  ```
  
+ Tip: It's not a great practice to run code located in Scratch. Scratch is for short-term input and output as it is much faster and your jobs will run way faster if you're doing IO here. You'll want to move anything you want to keep to Home for long-term storage as Scratch gets deleted every 3 months, but while you're using the data have it in scratch. Scripts themselves, however, have no input/output concerns, so how would we move the scripts to HOME, but run the job while we're still located in SCRATCH?
+ 
  At this point, we can leave this file: we do so by pressing ```Ctrl + O```, ```Enter```, and ```Crtl + X```. "O" writes out or saves, and "X" exits. You'll be returned to the terminal and if you want, you can ls to see your newly created sbatch file. Using "nano" and the file name would open it again for editing.[^2]
  
  If you're ready to proceed now, though, we'll use nano to create a new python script instead. How would we do that?
