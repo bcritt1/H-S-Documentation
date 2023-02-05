@@ -2,7 +2,7 @@
 
 ## About Stanford Research Computing Center
 
-Stanford Research Computing Center ([SRCC](https://srcc.stanford.edu/) builds, manages, and supports Stanford's High-Performance Computing ([HPC])(https://en.wikipedia.org/wiki/High-performance_computing) resources. For researchers in H&S, these resources primarily consist of [Sherlock](https://srcc.stanford.edu/sherlock-high-performance-computing-cluster), a computing cluster made up of nearly 50,000 CPU cores, provided both by Stanford centrally and researchers who contribute hardware to the cluster. These resources are free to use for Stanford researchers.
+Stanford Research Computing Center ([SRCC](https://srcc.stanford.edu/) builds, manages, and supports Stanford's High-Performance Computing \([HPC]\)(https://en.wikipedia.org/wiki/High-performance_computing) resources. For researchers in H&S, these resources primarily consist of [Sherlock](https://srcc.stanford.edu/sherlock-high-performance-computing-cluster), a computing cluster made up of nearly 50,000 CPU cores, provided both by Stanford centrally and researchers who contribute hardware to the cluster. These resources are free to use for Stanford researchers.
 
 While we work a lot with the folks in the S of H&S, we've had limited engagement with you H's. It's my hope to change that.
 
