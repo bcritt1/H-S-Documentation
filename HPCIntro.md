@@ -10,7 +10,7 @@ While we work a lot with the folks in the S of H&S, we've had limited engagement
 
 The simple answer is, you may not need to. If you don't do computational research, obviously, you don't need to compute in a high-performance environment. If you do comptutational research, but your personal machine works for you what you do, you may not need HPC either, though there may be some other reasons to get on HPC beyond pure compute power. You definitely should think about moving to HPC if you're doing computational research and working at a scale that your personal computer struggles or fails to handle it. A typical Sherlock node has about 250x the CPUs and RAM of the average Macbook Pro, and even more can be accessed in special circumstances. In short, you can do things on HPC that you simply cannot do on a personal computer.
 
-But there are other reasons to get on Sherlock, even if you're not a power user. If you do computational research with students or a team, Sherlock offers 1 TB of free, shared storage to teams: this can be really convenient if folks need to be working on the same files and it's proving a pain to pass them back and forth, coordinate usage, etc. [It's also a good learning environment?????] [OTHER REASONS?]
+But there are other reasons to get on Sherlock, even if you're not a power user. If you do computational research with students or a team, Sherlock offers 1 TB of free, shared storage to teams: this can be really convenient if folks need to be working on the same files and it's proving a pain to pass them back and forth, coordinate usage, download from Drive, etc. As we'll see today, it can also be a good learning environment, teaching many fundamentals of computing that can translate back to personal computing research. 
 
 ## Key Differences from Personal Computing
 
@@ -22,7 +22,7 @@ That said, HPC resources are primarily designed around the idea of the batch, wh
 
 If you're an old pro, you probably have code that you can run directly in OnDemand's RStudio or Jupyter, or adapt to run through the SLURM queue. It's my (and the rest of SRC's) job to help you do these things, too, so if you run into any issues, you can reach out to [me](mailto:bcritt@stanford.edu), or submit a ticket [here](mailto:srcc-support@stanford.edu). If you're looking to optimize that code to run on the batch system, I'm happy to help, or you can check out the resource in the next paragraph.
 
-For the non-experts (or those wisely looking for a shortcut), I have also been assembling a library of scripts both for scheduling jobs on Sherlock and for executing common digital humanities tasks [here](NEEED AN HTTPS). They don't work out of the box as they need to be adapted to point to your data, accounts, etc., but they're pretty clear about what you need to complete and where, and thus pretty easy Mad Libs (a rarity in technical documentation, I've found). This is a good option for those of you who can generally read code, but may not be comfortable writing it from scratch. 
+For the non-experts (or those wisely looking for a shortcut), I have also been assembling a library of scripts both for scheduling jobs on Sherlock and for executing common digital humanities tasks [here](NEED AN HTTPS). They don't work out of the box as they need to be adapted to point to your data, accounts, etc., but they're pretty clear about what you need to complete and where, and thus pretty easy Mad Libs (a rarity in technical documentation, I've found). This is a good option for those of you who can generally read code, but may not be comfortable writing it from scratch. 
 
 For those who are new to coding in general, there are also lots of options that I hope to support and make more central to HPC research at Stanford. The library offers tons of great [courses](https://library.stanford.edu/workshops) on a broad range of subjects specific to computational humanities research. There are also Carpentry [workshops](https://library.stanford.edu/research/carpentries-stanford), but these seem to have gone into hibernation during COVID, and also can tend to focus more on science data and methods that can be hard for beginners to apply to humanities research.
 
@@ -129,11 +129,15 @@ python3 ./mycode.py
 python3 ./mycode.py (Invoke the desired script just as you would in the Terminal.)
  ```
  
- Tip: It's not a great practice to run code located in Scratch. Scratch is for short-term input and output as it is much faster and your jobs will run way faster if you're doing IO here. You'll want to move anything you want to keep to Home for long-term storage as Scratch gets deleted every 3 months, but while you're using the data have it in scratch. Scripts themselves, however, have no input/output concerns, so how would we move the scripts to HOME, but run the job while we're still located in SCRATCH?
+ Tip: It's not a great practice to run code located in Scratch. Scratch is for short-term input and output as it is much faster and your jobs will run way faster if you're doing IO here. You'll want to move anything you want to keep to Home for long-term storage as Scratch gets deleted every 3 months, but while you're using the data have it in scratch. Scripts themselves, however, have no input/output concerns, so how would we move the scripts to HOME, but run the job while we're still located in SCRATCH? [DON'T WORRY ABOUT THIS QUESTION, IT'S MEANT TO BE A RELATIVELY IN-DEPTH LEARNING EXERCISE]
  
  At this point, we can leave this file: we do so by pressing ```Ctrl + O```, ```Enter```, and ```Crtl + X```. "O" writes out or saves, and "X" exits. You'll be returned to the terminal and if you want, you can ls to see your newly created sbatch file. Using "nano" and the file name would open it again for editing.[^2]
  
- If you're ready to proceed now, though, we'll use nano to create a new python script instead. How would we do that?
+ If you're ready to proceed now, though, we'll use nano to create a new python script instead. How would we do that? [ANOTHER MINI_QUIZ, BUT I'VE PUT THE COMMAND BELOW]:
+ 
+ ```
+ nano mycode.py
+ ```
  
  When you've created a file called mycode.py (the name referenced in the sbatch file), insert the following python code:
  
@@ -149,13 +153,13 @@ python3 ./mycode.py (Invoke the desired script just as you would in the Terminal
  
  Doing so should output a job ID for you in the terminal. On Sherlock, you can check the status of your job using ```squeue -u $USER```, which will show all your jobs by ID number, tell you whether your job is pending (PD) or running (R), and give you further details on the job. [[[SCREENSHOT]]]. Because Farmshare isn't a live research environment, there's rarely a queue to show this function, but you will definitely need to use ```squeue``` to monitor your jobs on Sherlock.
  
- Because of the batch system, outputs are not handled the same way as when you run a python script on your personal computer. In an interactive session, outputs (usually of cells, not entire scripts) are immediately displayed on your screen. Because there are lots of intermediary outputs and your job may not run right away, outputs are instead routed to the file we designated in our sbatch script (testjob%j.out [%j here is a variable for job number: the number you just saw will be automatically added to this file's name so you can keep the files straight when you submit multiple jobs]). So to see our output, we can type
+ Because of the batch system, outputs are not handled the same way as when you run a python script on your personal computer. In an interactive session, outputs (usually of cells, not entire scripts) are immediately displayed on your screen. Because there are lots of intermediary outputs and your job may not run right away, outputs are instead routed to the file we designated in our sbatch script (testjob%j.out [%j here is a variable for job number: the number you just saw will be automatically added to this file's name so you can keep the files straight when you submit multiple jobs]). So to see our output, we can type the command below, where the \*'s stand for the job number assigned to you by the system:
  
  ```
  cat test_job.*****.out
  ```
  
- where the \*'s stand for the job number assigned to you by the system. If everything went correctly, you should see "Hello, world!" in the terminal. This means that our sbatch script submitted our python script to Farmshare, which ran the python code and outputted "Hello, world!" to the \*.out file. Congratulations, you just ran your first script in an HPC environment!
+If everything went correctly, you should see "Hello, world!" in the terminal. This means that our sbatch script submitted our python script to Farmshare, which ran the python code and outputted "Hello, world!" to the \*.out file. Congratulations, you just ran your first script in an HPC environment![^3]
  
  ## Data Transfer
  
@@ -177,4 +181,5 @@ python3 ./mycode.py (Invoke the desired script just as you would in the Terminal
  
  [^1]: This autocomplete feature needs at least 3 characters, and will give you options if there are competing answers to your input: "Documents" and "Docker", for instance. To use autocomplete, you'll need to type enough so that there are no alternatives.
  [^2]: Note that if you want a specific version of python (or other software), you would load them here instead of in your python script (eg: ```module load python/3.6.1```. Packages are installed via [pip](pythonPackages.md) 
+ [^3]: If you don't see "Hello world" in the .out file, you can ```cat``` the .err file to see what prevented your script from running correctly. While you may not know how to troubleshoot the error now, this is the general workflow for troubleshooting in this environment.
 
