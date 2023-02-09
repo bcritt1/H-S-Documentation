@@ -28,7 +28,7 @@ For those who are new to coding in general, there are also lots of options that 
 
 ## Actually Running Code: An Interactive Adventure
 
-Before you leave today, you will have run code on a supercomputer. [NO OPEN ONDEMAND ON FARMSHARE RIGHT?]
+Before you leave today, you will have run code on a supercomputer cluster.
 
 For this exercise, we're going to be using [Farmshare](https://srcc.stanford.edu/more-about-farmshare), an educational cluster, rather than Sherlock. If you're just learning, you'll probably want to use Farmshare too. Conveniently, you don't even have to request an account: anyone with a Stanford ID can just log-on (we'll cover this in a second). Once you switch to running "real" jobs, though, you'll want to make the switch to Sherlock. An added benefit of switching to Sherlock is that you can take advantage of the OnDemand interface, which I mentioned before allows you to work in RStudio and/or Jupyter. Farmshare, however, will give us a taste of the real, stripped-down HPC experience.
 
@@ -129,11 +129,11 @@ python3 ./mycode.py
 python3 ./mycode.py (Invoke the desired script just as you would in the Terminal.)
  ```
  
- Tip: It's not a great practice to run code located in Scratch. Scratch is for short-term input and output as it is much faster and your jobs will run way faster if you're doing IO here. You'll want to move anything you want to keep to Home for long-term storage as Scratch gets deleted every 3 months, but while you're using the data have it in scratch. Scripts themselves, however, have no input/output concerns, so how would we move the scripts to HOME, but run the job while we're still located in SCRATCH? [DON'T WORRY ABOUT THIS QUESTION, IT'S MEANT TO BE A RELATIVELY IN-DEPTH LEARNING EXERCISE]
+ Tip: It's not a great practice to run code located in Scratch. Scratch is for short-term input and output as it is much faster and your jobs will run way faster if you're doing IO here. You'll want to move anything you want to keep to Home for long-term storage as Scratch gets deleted every 3 months, but while you're using the data have it in scratch. Scripts themselves, however, have no input/output concerns, so how would we move the scripts to HOME, but run the job while we're still located in SCRATCH? 
  
  At this point, we can leave this file: we do so by pressing ```Ctrl + O```, ```Enter```, and ```Crtl + X```. "O" writes out or saves, and "X" exits. You'll be returned to the terminal and if you want, you can ls to see your newly created sbatch file. Using "nano" and the file name would open it again for editing.[^2]
  
- If you're ready to proceed now, though, we'll use nano to create a new python script instead. How would we do that? [ANOTHER MINI_QUIZ, BUT I'VE PUT THE COMMAND BELOW]:
+ If you're ready to proceed now, though, we'll use nano to create a new python script instead. How would we do that? That's right:
  
  ```
  nano mycode.py
