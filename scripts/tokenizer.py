@@ -28,7 +28,7 @@ for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
         corpus.append(fin.read())
 
-# Function to tokenize the corpus into sentences and then into words, maintaining sentence-level information. This format is required for gensim word vectors downstream
+# Function to tokenize the corpus into sentences and then into words, maintaining sentence-level information. This format is required for gensim word embedding downstream
 def make_sentences(list_txt):
     all_txt = []
     for txt in list_txt:
