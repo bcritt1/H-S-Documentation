@@ -52,9 +52,9 @@ def make_sentences(list_txt):
 sentences = make_sentences(corpus)
 
 # Optional exit point, export to json
-#import json
-#with open('data.json', 'w', encoding='utf-8') as f:
-#    json.dump(sentences, f, ensure_ascii=False, indent=4)
+import json
+with open('data.json', 'w', encoding='utf-8') as f:
+    json.dump(sentences, f, ensure_ascii=False, indent=4)
 
 #Reimport with:
 #with open("data.json", "r") as read_file:
