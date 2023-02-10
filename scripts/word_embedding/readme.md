@@ -20,4 +20,4 @@ The second part of the workflow. For use with tokenizer_to_json.py: loads the js
 
 # full_embedding_workflow.py
 
-tokenizer_to_json.py and embedding.py combined. For those who want to run everything in one fell swoop and don't care about saving intermediary data structures for outside use.
+tokenizer_to_json.py and embedding.py combined. For those who want to run everything in one fell swoop and don't care about saving intermediary data structures for outside use. Will save the word embedding model after creation.
