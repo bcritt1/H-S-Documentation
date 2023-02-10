@@ -78,4 +78,4 @@ model = gensim.models.Word2Vec(sentences, min_count=0, vector_size=100, sg = 1)
 model.save('my_model')
 
 #If you save your model, in the future you can start at this line, loading in the model from disk. 
-my_model = gensim.models.Word2Vec.load('my_model') 
+#my_model = gensim.models.Word2Vec.load('my_model') 
