@@ -1,0 +1,10 @@
+gensim
+jupyterlab
+matplotlib
+nltk
+numpy
+plotly
+scikit-learn
+seaborn
+tqdm
+chakin
