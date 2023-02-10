@@ -9,11 +9,11 @@ min_count: An option telling gensim the minimum times a word should occur in the
 vector_size=100: The number of coordinates gensim will use to describe each word vector. The model will be more accurate the higher this number is, but it will also take more time to compute.
 sg=1: Sets the method for the embedding. 1 is skip-gram, 0 is CBOW. Skip-gram is thought to be more accurate on smaller corpora, so we will use that."""
 
-#Create model according to paramaters above. "sentences" is the output of the tokenizer.py script, reimported from json as below:
+#Create model according to parameters above. "sentences" is the output of the tokenizer.py script, reimported from json as below:
 
 #Reimport with:
-#with open("data.json", "r") as read_file:
-#    data = json.load(read_file)
+with open("data.json", "r") as read_file:
+    data = json.load(read_file)
 model = gensim.models.Word2Vec(sentences, min_count=0, vector_size=100, sg = 1)
 
 #Save the model locally so we don't need to retrain it every time we open our notebook. 
