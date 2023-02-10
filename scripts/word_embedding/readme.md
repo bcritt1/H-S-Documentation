@@ -17,3 +17,7 @@ A script that tokenizes a directory and converts that python data into a json so
 ## embedding.py
 
 The second part of the workflow. For use with tokenizer_to_json.py: loads the json from that script back into python and creates a word embedding from it.
+
+# full_embedding_workflow.py
+
+tokenizer_to_json.py and embedding.py combined. For those who want to run everything in one fell swoop and don't care about saving intermediary data structures for outside use.
