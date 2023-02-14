@@ -1,12 +1,13 @@
 #HOW IS FIRST BIT INTEGRATED?
 
+"""ALL DONE IN SHELL: FILE WITH INFO IS PACKAGES.TXT
 #Download necessary libraries collected in a txt file and added here piecemeal as needed. 
 #It would be cleaner to have everything in the text file.
-!pip3 install -r requirements1.txt #done in shell
+!pip3 install -r requirements.txt #done in shell
 !pip install --upgrade certifi 
 !python -m nltk.downloader all
-
-#all this in script?
+"""
+#import libraries
 import nltk
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize.treebank import TreebankWordTokenizer
