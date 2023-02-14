@@ -8,7 +8,7 @@ Several lines of shell code to load various modules needed for this process. You
 
 ## [requirements.txt](/scripts/word_embedding/requirements.txt)
 
-A small text file loaded used to load necessary packages in python; referenced by the various scripts in this directory. You likely won't need to open this file, but it needs to be in your working directory when you run the python files.
+A small text file loaded used to load necessary packages in python; referenced by the various scripts in this directory. You likely won't need to open this file by default, but it needs to be in your working directory when you run the python files.
 
 ## [tokenizer_to_json.py](/scripts/word_embedding/tokenizer_to_json.py)
 
