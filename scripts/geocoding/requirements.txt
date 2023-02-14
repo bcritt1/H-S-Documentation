@@ -1,0 +1,7 @@
+nltk
+pandas
+ssl
+os
+spacy
+urllib
+requests
