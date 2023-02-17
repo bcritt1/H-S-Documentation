@@ -6,7 +6,7 @@ library(tokenizers)
 library(tidyverse)
 library(tidytext)
 
-input_loc <- "/Users/bcritt/Documents/StanfordProjects/Corpora/Emerson/emerson"
+input_loc <- "</Users/your/file/path/>"
 files <- dir(input_loc, full.names = TRUE)
 text <- c()
 for (f in files) {
