@@ -33,10 +33,6 @@ for infile in os.listdir(corpusdir):
 #define the tokenizer NLTK (Natural Language Toolkit) will use
 tokenizer = TreebankWordTokenizer()
 
-#Create a variable "sentences", defined as the output of the sent_tokenize function being run on the corpus list.
-#See that the sentence is now a list of lists, with each item a sentence in the corpus.
-sentences = sent_tokenize(corpus[0])
-
 # Function to tokenize the corpus into sentences and then into words, maintaining sentence-level information. This format is required for gensim word vectors downstream
 def make_sentences(list_txt):
     all_txt = []
