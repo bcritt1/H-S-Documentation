@@ -1,13 +1,12 @@
 #HOW IS FIRST BIT INTEGRATED?
 
-"""ALL DONE IN SHELL: FILE WITH INFO IS PACKAGES.TXT
 #Download necessary libraries collected in a txt file and added here piecemeal as needed. 
 #It would be cleaner to have everything in the text file.
-!pip3 install -r requirements.txt #done in shell
+!pip3 install -r requirements1.txt #done in shell
 !pip install --upgrade certifi 
 !python -m nltk.downloader all
-"""
-#import libraries
+
+#all this in script?
 import nltk
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize.treebank import TreebankWordTokenizer
@@ -79,4 +78,4 @@ model = gensim.models.Word2Vec(sentences, min_count=0, vector_size=100, sg = 1)
 model.save('my_model')
 
 #If you save your model, in the future you can start at this line, loading in the model from disk. 
-#my_model = gensim.models.Word2Vec.load('my_model') 
+my_model = gensim.models.Word2Vec.load('my_model') 
