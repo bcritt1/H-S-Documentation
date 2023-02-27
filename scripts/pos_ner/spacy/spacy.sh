@@ -2,7 +2,7 @@
 #SBATCH --job-name=test_job
 #SBATCH --output=test_job.%j.out
 #SBATCH --error=test_job.%j.err
-#SBATCH -p owners
+#SBATCH -p hns
 #SBATCH -c 1
 #SBATCH --mem=32GB
 module load python/3.9.0
