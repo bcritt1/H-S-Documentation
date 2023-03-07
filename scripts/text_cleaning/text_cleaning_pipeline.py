@@ -17,13 +17,24 @@ except AttributeError:
 else:
     ssl._create_default_https_context = _create_unverified_https_context
 
-!pip3 install nltk
+# (done in terminal) 
+#!pip3 install nltk
+#!python3 -m ntlk.downloader all
+
 import nltk
-nltk.download()
+
+# convert corpus to string instead of list
+sorpus = str(corpus)
+
+# this particular corpus has a multitude of "\n's" due to its original encoding. This removes them; code can be modified to remove other text artifacts before tokenizing.
+
+import re
+sorpus = re.sub(r'(\\n[ \t]*)+', '', sorpus)
+sorpus
 
 # could also split into words (or paragraphs, etc.)
 from nltk.tokenize import word_tokenize
-words = word_tokenize(corpus[0])
+words = word_tokenize(sorpus)
 
 # convert to lower case
 words = [w.lower() for w in words]
