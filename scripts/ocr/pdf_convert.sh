@@ -3,7 +3,7 @@
 #brew install imagemagick
 #brew install ghostscript
 #brew install tesseract
-
+DIR=/Users/bcritt/Documents/pdfs
 FILES=/Users/bcritt/Documents/pdfs/*.pdf
 for f in $FILES;
 do
@@ -13,7 +13,7 @@ do
 	tesseract $tiff $ocr
 done
 
-mkdir /Users/bcritt/Documents/pdfs/"ocr"
-mkdir /Users/bcritt/Documents/pdfs/"tiff"
-mv /Users/bcritt/Documents/pdfs/*_ocr.txt /Users/bcritt/Documents/pdfs/ocr
-mv /Users/bcritt/Documents/pdfs/*.tiff /Users/bcritt/Documents/pdfs/tiff
+mkdir $DIR"/ocr"
+mkdir $DIR"/tiff"
+mv $DIR/*_ocr.txt $DIR/ocr
+mv $DIR/*.tiff $DIR/tiff
