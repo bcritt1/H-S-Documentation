@@ -4,6 +4,7 @@ install.packages("tidyverse")
 library(tokenizers)
 library(tidyverse)
 
+task_id <- Sys.getenv("SLURM_ARRAY_TASK_ID")
 
 input_loc <- "/Users/bcritt/Documents/StanfordProjects/Corpora/Emerson/emerson"
 files <- dir(input_loc, full.names = TRUE)
