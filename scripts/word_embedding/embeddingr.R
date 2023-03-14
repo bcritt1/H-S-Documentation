@@ -1,10 +1,8 @@
-install.packages("tokenizers")
-install.packages("tidyverse")
+# implementation of https://gensimr.news-r.org/reference/model_word2vec.html
 install.packages("remotes")
 remotes::install_github("news-r/gensimr")
 gensimr::install_dependencies()
 
-library(tokenizers)
 library(tidyverse)
 library(gensimr)
 
@@ -22,3 +20,5 @@ word2vec$build_vocab(docs)
 word2vec$train(docs, total_examples = word2vec$corpus_count, epochs = 20L)
 word2vec$init_sims(replace = TRUE)
 word2vec$wv$most_similar(positive = c("aristotle"))
+word2vec$wv$doesnt_match(c("human", "interface", "trees"))
+word2vec$wv$similarity("human", "trees")
