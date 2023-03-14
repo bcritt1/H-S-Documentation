@@ -1,13 +1,14 @@
-install.packages("spacyr")
-library(spacyr)
-library(reticulate)
+# implementation of https://cran.r-project.org/web/packages/spacyr/vignettes/using_spacyr.html
 
 reticulate::virtualenv_create(envname = 'python_environment', 
                               python= 'python3')
 reticulate::virtualenv_install("python_environment")
 reticulate::use_virtualenv("python_environment",required = TRUE)
 
-use_python("/usr/local/bin/python3")
+install.packages("spacyr")
+library(spacyr)
+
+#use_python("/usr/local/bin/python3")
 spacy_initialize(model = "en_core_web_sm")
 
 input_loc <- "/Users/bcritt/Documents/StanfordProjects/Corpora/Emerson/emerson"
