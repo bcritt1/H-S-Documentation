@@ -1,0 +1,10 @@
+#best for multi-session work as there is a save function. Exploration functions found here: https://www.rdocumentation.org/packages/word2vec/versions/0.3.4
+
+install.packages("word2vec")
+library(word2vec)
+#set.seed(123456789)
+#create model, type can be cbow or skip-gram, dim is number of coordinates, iterations is number of trainings
+model <- word2vec(x = text, type = "skip-gram", dim = 15, iter = 20) 
+embedding <- as.matrix(model)
+write.word2vec(model, "mymodel.bin")
+#model <- read.word2vec("mymodel.bin")
