@@ -1,0 +1,1 @@
+Python files for text cleaning. Interactive ipynb can be found [here](/scripts/ipynbs/text_cleaning_pipeline.ipynb). The [tokenize.r](/scripts/tokenizers/tokenize.r) performs text cleaning automatically.
