@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#brew install imagemagick
-#brew install ghostscript
-#brew install tesseract
+# before running, <ml load imagemagick/7.0.7-2 ghostscript/9.53.2 tesseract/5.1.0
+# easily compatible with jobArray scripts
+
 DIR=/Users/bcritt/Documents/pdfs
 FILES=/Users/bcritt/Documents/pdfs/*.pdf
 for f in $FILES;
