@@ -43,7 +43,7 @@ Another fundamental text processing technique. Tokenizing applies various heuris
 them parameters, through tokenizers, to do so and thus understand language in a more human manner, ie. as a collection of words. Tokens can also be understood as sentences, paragraphs, etc. (which in turn 
 influence the unit of thought a study engages); options for doing those types of tokenization are provided as well.
 
-# Word Embedding
+## Word Embedding
 
 Word embeddings describe words in a corpus as a vectors in n-dimensional space using neural net models. In a human sense, they give some sense of the syntactic usage of words in a given corpus. This repo 
 includes word2vec implementations of word embeddings in R and python.
