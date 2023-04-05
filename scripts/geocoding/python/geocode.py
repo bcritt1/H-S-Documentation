@@ -1,7 +1,12 @@
-# Before running, input the lines in packages.txt into the terminal on Sherlock.
-
 # Allows for web queries
 import ssl
+import urllib
+import requests
+import pandas as pd
+import os
+import spacy
+import time
+
 try:
     _create_unverified_https_context = ssl._create_unverified_context
 except AttributeError:
@@ -10,15 +15,12 @@ else:
     ssl._create_default_https_context = _create_unverified_https_context
 
 # Read in corpus from scratch
-import pandas as pd
-import os
 corpusdir = '/scratch/users/bcritt/corpus/'
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
         corpus.append(fin.read())
 
-import spacy
 # Load language model from spacy. This can be changed to other languages. See https://spacy.io/usage/models/
 nlp = spacy.load("en_core_web_sm")
 # May need to increase length for large corpora. len(corpus) in python to find length.
@@ -36,14 +38,13 @@ df = pd.DataFrame(ner_output)
 # Retain only entities labeled as geopolitical entities. Can change string to retain people or other types.
 places = df.loc[df[0].str.contains("GPE")]
 places[0] = places[0].str.replace('GPE','')
-
-import urllib
-import requests
+#places = places.replace('GPE','')
 
 # Perform the geocode with Nominatum
 def geocode2(locality):
     url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(locality) +'?format=json'
     response = requests.get(url).json()
+    time.sleep(1)
     if(len(response)!=0):
         return(response[0]['lat'], response[0]['lon'])
     else:
