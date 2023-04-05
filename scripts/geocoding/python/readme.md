@@ -2,7 +2,7 @@
 
 This repo contains four simple files that execute spaCy's [NER](https://spacy.io/api/entityrecognizer/) functionality on a group of files and use that output as an input for geocoding in [Nominatum](https://nominatim.org/)[^1].
 
-# File Overview
+## File Overview
 
 The files consist of:
 
@@ -11,7 +11,7 @@ The files consist of:
 3. [geocoding.py](/scripts/geocoding/python/geocoding.py): Runs spaCy and Nominatum, outputing a .csv file with all the places (geopolitical entities) in your corpus and their lat/long coordinates.
 4. [geocoding.sbatch](/scripts/geocoding/python/geocoding.sbatch): Creates a batch job for geocoding.py.
 
-# Usage instructions
+## Usage instructions
 
 1. ssh into sherlock with the syntax: 
 ```
@@ -54,7 +54,7 @@ sbatch geocode.sbatch
 ```
 When it finishes running, you should see your output as a file called places.csv in the geocoding directory[^3].
 
-# Notes
+### Notes
 
 [^1]: Google's geocoding API may offer better accuracy, but it can also rack up charges fast on large datasets. Nominatum is free and open-source.
 [^2]: Scratch systems offer very fast read/write speeds, so they're good for things like I/O. However, data on scratch is deleted every 60 days if not modified, so if you use scratch, you'll want to transfer results back to your home directory.
