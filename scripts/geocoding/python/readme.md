@@ -1,6 +1,6 @@
 # Python Geocoding Workflow
 
-This repo contains four simple files that execute spaCy's [NER](https://spacy.io/api/entityrecognizer/) functionality on a group of files and use that output as an input for geocoding in [Nominatum](https://nominatim.org/).[^1] 
+This repo contains four simple files that execute spaCy's [NER](https://spacy.io/api/entityrecognizer/) functionality on a group of files and use that output as an input for geocoding in [Nominatum](https://nominatim.org/)[^1].
 
 # File Overview
 
@@ -46,13 +46,13 @@ You should see some dialog from the computer as it installs different things:
 ```
 nano geocoding.py
 ```
-and change the line "corpus dir = /scratch/users/bcritt/corpus/" to the location of your corpus.[^2] For info on transferring data to Sherlock, see: [https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). For the purposes of efficiency, it is best that you locate your corpus in scratch like me, but it can be anywhere so long as you point the script to it.
+and change the line "corpus dir = /scratch/users/bcritt/corpus/" to the location of your corpus[^2]. For info on transferring data to Sherlock, see: [https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). For the purposes of efficiency, it is best that you locate your corpus in scratch like me, but it can be anywhere so long as you point the script to it.
 
 6. At this point, we should be able to run our main script. You can do this with:
 ```
 sbatch geocode.sbatch
 ```
-When it finishes running, you should see your output as a file called places.csv in the geocoding directory.[^3]
+When it finishes running, you should see your output as a file called places.csv in the geocoding directory[^3].
 
 # Notes
 
