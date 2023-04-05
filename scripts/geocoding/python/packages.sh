@@ -1,4 +1,4 @@
-#input these lines directly into terminal on Sherlock
+#! /usr/bin/bash
 
 ml python/3.9.0
 pip3 install --user -r requirements.txt
