@@ -48,7 +48,13 @@ nano geocoding.py
 ```
 and change the line "corpus dir = /scratch/users/bcritt/corpus/" to the location of your corpus.[^2] For info on transferring data to Sherlock, see: [https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). For the purposes of efficiency, it is best that you locate your corpus in scratch like me, but it can be anywhere so long as you point the script to it.[^2]
 
-6. At this point, we should be able to run our main script. 
+6. At this point, we should be able to run our main script. You can do this with:
+```
+sbatch geocode.sbatch
+```
+When it finishes running, you should see your output as a file called places.csv in the geocoding directory.[^3]
+
+* Notes
 
 [^1] Google's geocoding API may offer better accuracy, but it can also rack up charges fast on large datasets. Nominatum is free and open-source.
 [^2] Scratch systems offer very fast read/write speeds, so they're good for things like I/O. However, data on scratch is deleted every 60 days if not modified, so if you use scratch, you'll want to transfer results back to your home directory.
