@@ -42,7 +42,7 @@ If you ```ls``` now, you should see that your packages.sh file has changed color
 ./packages.sh
 ```
 You should see some dialog from the computer as it installs different things:
-![shell script](/images/shellScript.png)
+![shell script](/images/bashScript.png)
 
 5. With our environment set up, we just need to make one small tweak to our main script:
 ```
