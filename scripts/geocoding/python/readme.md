@@ -27,6 +27,7 @@ and use that program to download the files:
 svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/geocoding/python/
 ```
 This will create a directory in your home space on Sherlock called "geocoding" with all the files in this repository.
+![Repo Pull](/images/repoPull.png)
 
 3. Once you have the files, you'll use packages.sh to set up your environment. First, we need to give the computer permission to run our shell script:
 ```
@@ -34,13 +35,14 @@ cd geocoding/
 chmod +x packages.sh
 ```
 If you ```ls``` now, you should see that your packages.sh file has changed colors, meaning it is now executable.
+![chmod](/images/chmod.png)
 
 4. Now run it:
 ```
 ./packages.sh
 ```
 You should see some dialog from the computer as it installs different things:
-
+![shell script](/images/shellScript.png)
 
 5. With our environment set up, we just need to make one small tweak to our main script:
 ```
