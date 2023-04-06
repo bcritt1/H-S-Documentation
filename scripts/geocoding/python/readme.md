@@ -1,6 +1,7 @@
 # Python Geocoding Workflow
 
-This repo contains four simple files that execute spaCy's [NER](https://spacy.io/api/entityrecognizer/) functionality on a group of files and use that output as an input for geocoding in [Nominatum](https://nominatim.org/)[^1].
+This repo contains four simple files that execute spaCy's [NER](https://spacy.io/api/entityrecognizer/) functionality on a group of files and use that output as an input for geocoding in 
+[Nominatim](https://nominatim.org/)[^1].
 
 ## File Overview
 
@@ -53,8 +54,8 @@ and change the line "corpus dir = /scratch/users/bcritt/corpus/" to the location
 6. At this point, we're just about ready to run our main script. However, you'll want to make a few tweaks to geocode.sbatch first. I've tuned most parameters for this process, but you'll need to change 
 the path for your *.out and *.err files, which give you feedback on what went wrong should your script fail. I route them to /out and /err directories in my home: you can do the same by changing my user 
 name to yours in the script. I tested the script on a list of ~4500 place names (<len(places)> in python) and it took 1.5 hours and consumed a little over 13 gb of memory at most. Therefore the sbatch file 
-asks for 2 hours and 16 gb memory. Because of API limits, you can estimate 1-2 seconds per query and adjust the -t line. The memory usage should stay pretty constant, but because we're cutting it pretty 
-close, you may want to adjust this up.
+asks for 2 hours and 16 gb memory. Because of API limits, you can estimate 1-2 seconds per query and adjust the -t line accordingly. The memory usage should stay pretty constant, but because we're cutting 
+it pretty close, you may want to adjust this up.
 
  ```
 nano geocode.sbatch

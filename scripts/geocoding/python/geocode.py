@@ -1,4 +1,4 @@
-# Allows for web queries
+# Import libraries
 import ssl
 import urllib
 import requests
@@ -40,15 +40,15 @@ places = df.loc[df[0].str.contains("GPE")]
 places[0] = places[0].str.replace('GPE','')
 #places = places.replace('GPE','')
 
-# Perform the geocode with Nominatum
+# Perform the geocode with Nominatum. Function adapted from https://www.natasshaselvaraj.com/a-step-by-step-guide-on-geocoding-in-python/
 
-def geocode2(locality):
+def geocode(locality):
     url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(locality) +'?format=json'
     response = requests.get(url).json()
+    time.sleep(1)
     if(len(response)!=0):
         return(response[0]['lat'], response[0]['lon'])
     else:
         return('-1')
-    time.sleep(1)
 
-places['geocoded'] = places[0].apply(geocode2)
+places['geocoded'] = places[0].apply(geocode)
