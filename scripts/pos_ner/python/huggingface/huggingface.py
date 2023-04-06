@@ -1,6 +1,9 @@
-# Import corpus
+# Import packages
 import os
-corpusdir = '/home/users/bcritt/corpus/'
+import json
+
+# Read in corpus
+corpusdir = '/home/scratch/users/bcritt/corpus/'
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
@@ -17,6 +20,6 @@ from transformers import pipeline
 nlp = pipeline('ner', model=model, tokenizer=tokenizer, aggregation_strategy="simple")
 entities = nlp(corpus)
 
-import json
+# Export data to json
 with open('data.json', 'w', encoding='utf-8') as f:
     json.dump(str(entities), f, ensure_ascii=False, indent=4)
