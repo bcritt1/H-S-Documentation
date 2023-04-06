@@ -25,7 +25,7 @@ module load system subversion/1.12.2
 ```
 and use that program to download the files:
 ```
-svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/geocoding/python/
+svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/geocoding/python/ geocoding
 ```
 This will create a directory in your home space on Sherlock called "geocoding" with all the files in this repository.
 ![Repo Pull](/images/repoPull.png)
