@@ -41,13 +41,14 @@ places[0] = places[0].str.replace('GPE','')
 #places = places.replace('GPE','')
 
 # Perform the geocode with Nominatum
+
 def geocode2(locality):
     url = 'https://nominatim.openstreetmap.org/search/' + urllib.parse.quote(locality) +'?format=json'
     response = requests.get(url).json()
-    time.sleep(1)
     if(len(response)!=0):
         return(response[0]['lat'], response[0]['lon'])
     else:
         return('-1')
+    time.sleep(1)
 
 places['geocoded'] = places[0].apply(geocode2)
