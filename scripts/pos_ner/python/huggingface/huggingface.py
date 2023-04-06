@@ -3,7 +3,7 @@ import os
 import json
 
 # Read in corpus
-corpusdir = '/home/scratch/users/bcritt/corpus/'
+corpusdir = '/scratch/users/<USERNAME>/corpus/'
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
