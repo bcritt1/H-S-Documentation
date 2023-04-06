@@ -50,7 +50,15 @@ nano geocoding.py
 ```
 and change the line "corpus dir = /scratch/users/bcritt/corpus/" to the location of your corpus[^2]. For info on transferring data to Sherlock, see: [https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). For the purposes of efficiency, it is best that you locate your corpus in scratch like me, but it can be anywhere so long as you point the script to it.
 
-6. At this point, we should be able to run our main script. You can do this with:
+6. At this point, we're just about ready to run our main script. However, you'll want to make a few tweaks to geocode.sbatch first. I've tuned most parameters for this process, but you'll need to change 
+the path for your *.out and *.err files, which give you feedback on what went wrong should your script fail. I route them to /out and /err directories in my home: you can do the same by changing my user 
+name to yours in the script. 
+```
+nano geocode.sbatch
+```
+to do this.
+
+Then you should be able to run with: 
 ```
 sbatch geocode.sbatch
 ```
