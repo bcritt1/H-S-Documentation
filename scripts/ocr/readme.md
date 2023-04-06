@@ -53,7 +53,7 @@ nano pdf_convert.sbatch
 ```
 Here you need to make one of the following changes depending on whether you want to run in parallel:If you don't want to run in parallel, you can simply remove the array line in the slurm instructions. If running as an array, the range in this line should be adjusted to 1-n, where n is the number of files in your input directory.
 
-# Running the Script
+### Running the Script
 
 We should be ready.
 ```
