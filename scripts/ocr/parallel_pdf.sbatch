@@ -2,7 +2,7 @@
 #SBATCH --job-name=myarrayjob
 #SBATCH --output=test_job.%j.out
 #SBATCH --error=test_job.%j.err
-#SBATCH -p owners
+#SBATCH -p hns
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --array=1-2
