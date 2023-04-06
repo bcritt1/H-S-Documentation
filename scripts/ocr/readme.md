@@ -45,7 +45,8 @@ Now we just need to tweak two variables in the shell script to reflect your envi
 nano parallel_pdf_convert.sh
 ```
 and change the FILES and DIR variables to reflect the location of your PDFs on Sherlock. For more on transferring your data to Sherlock, see 
-[https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/).
+[https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). I've configured the jobs for 6GB memory: this process should be relatively steady in memory usage, but if 
+you're getting an error, this can be increased. Wall time is set at the default of 2 hours, but a line with eg. #SBATCH time=04:00:00 for 4 hours could be added to change this.
 
 Another tweak in the .sbatch file and we will be good to go. 
 ```
