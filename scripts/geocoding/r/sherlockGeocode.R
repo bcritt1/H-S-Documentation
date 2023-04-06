@@ -31,7 +31,7 @@ reticulate::use_virtualenv("python_environment",required = TRUE)
 #use_python("/usr/local/bin/python3")
 spacy_initialize(model = "en_core_web_sm")
 
-input_loc <- "/home/users/bcritt/corpus/"
+input_loc <- "/scratch/users/bcritt/corpus/"
 files <- dir(input_loc, full.names = TRUE)
 text <- c()
 for (f in files) {
