@@ -45,14 +45,20 @@ Now we just need to tweak two variables in the shell script to reflect your envi
 nano parallel_pdf_convert.sh
 ```
 and change the FILES and DIR variables to reflect the location of your PDFs on Sherlock. For more on transferring your data to Sherlock, see 
-[https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). I've configured the jobs for 6GB memory: this process should be relatively steady in memory usage, but if 
-you're getting an error, this can be increased. Wall time is set at the default of 2 hours, but a line with eg. #SBATCH time=04:00:00 for 4 hours could be added to change this.
+[https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/).
 
 Another tweak in the .sbatch file and we will be good to go. 
 ```
 nano pdf_convert.sbatch
 ```
-Here you need to make one of the following changes depending on whether you want to run in parallel:If you don't want to run in parallel, you can simply remove the array line in the slurm instructions. If running as an array, the range in this line should be adjusted to 1-n, where n is the number of files in your input directory.
+Here you need to make one of the following changes depending on whether you want to run in parallel:If you don't want to run in parallel, you can simply remove the array line in the slurm instructions. If running as an array, the range 
+in this line should be adjusted to 1-n, where n is the number of files in your input directory. 
+
+I've configured the jobs for 16GB memory which worked for my small test corpus: this process should be
+relatively steady in memory usage, but if you're getting a memory error, this can be increased. Wall time is set at the default of 2 hours, but a line with eg. #SBATCH time=04:00:00 for 4 hours could be added to change this. For 
+reference, two pdfs of about 15 pages each only took about 1.5 minutes total.
+
+Finally, you'll need to change places with <USERNAME> to your username on Sherlock. 
 
 ### Running the Script
 
