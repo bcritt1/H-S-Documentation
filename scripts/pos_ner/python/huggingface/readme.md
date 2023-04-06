@@ -23,19 +23,16 @@ module load system subversion/1.12.2
 ```
 and use that program to download the files:
 ```
-svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/pos_ner/python/pos_ner/huggingface/ huggingface
+svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/pos_ner/python/huggingface/ huggingface
 ```
 This will create a directory in your home space on Sherlock called "huggingface" with all the files in this repository.
 
-3. Once you have the files, you'll use packages.sh to set up your environment. First, we need to give the computer permission to run our shell script:
+3. Once you have the files, you'll use packages.sh to set up your environment. First, let's move into our new directory::
 ```
 cd huggingface/
-chmod +x packages.sh
 ```
-If you ```ls``` now, you should see that your packages.sh file has changed colors, meaning it is now executable.
-![chmod](/images/chmod.png)
 
-4. Now run it:
+4. And run the shell script that sets up our environment::
 ```
 ./packages.sh
 ```
