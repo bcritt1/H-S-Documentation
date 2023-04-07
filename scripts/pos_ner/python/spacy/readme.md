@@ -1,12 +1,73 @@
-# Overview
+# Huggingface NER Workflow
 
-The files in this repo will allow you to perform tokenization and NER of a corpus with spaCy. 
+This repo contains three simple files that execute spaCy's [parts of speech](https://spacy.io/usage/linguistic-features/#pos-tagging) and named (entity 
+recognition](https://spacy.io/usage/linguistic-features/#named-entities) functions on a directory of txt files.
 
-How to use:
+## File Overview
 
-1. Clone this repo to your Home directory on Sherlock with ```git clone git://https://github.com/bcritt1/H-S-Documentation/edit/main/scripts/pos_ner/spacy/```. You'll likely want to move all these files back up to Home using ```cp ./spacy/* ..```.
-2. Transfer your corpus files to a directory within Home. See [here](https://www.sherlock.stanford.edu/docs/storage/data-transfer/#ssh-based-protocols) for more on files transfer.
-3. Change corpusdir in [sherlock_spacy_tokenize_pos_ner.py](/scripts/pos_ner/spacy/sherlock_spacy_tokenize_pos_ner.py) to the path to your text files
-4. Input the lines from [packages.txt](/scripts/pos_ner/spacy/packages.txt) in the terminal
-5. Run [spacy.sh](/scripts/pos_ner/spacy/spacy.sh) with ```sbatch spacy.sh```.
-6. The script will output two .csv files: pos and ner. The first will be an output of the parts of speech of your corpus tokens and the second will be just the named entities. The ner function builds on the pos function, so it can be turned off if ner is not desired.
+The files consist of:
+
+1. [packages.sh](/scripts/pos_ner/python/spacy/packages.sh): A shell script that sets up your environment, loading the correct version of python and some dependencies..
+2. [spacy.py](/scripts/pos_ner/python/spacy/spacy.py): Runs huggingface on a corpus, outputing a .csv files with POS and NER for all the words in your corpus.
+3. [spacy.sbatch](/scripts/pos_ner/python/spacy/spacy.sbatch): Creates a batch job for spacy.py.
+
+## Usage instructions
+
+1. ssh into sherlock with the syntax: 
+```
+ssh yourSUNetID@sherlock.stanford.edu
+```
+
+2. Once you are logged in, you'll want to have access to these files, which you can get with a couple simple commands. First, we need to install a program called subversion:
+```
+module load system subversion/1.12.2
+```
+and use that program to download the files:
+```
+svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/pos_ner/python/spacy/ spacy
+```
+![spacydir](/images/spacydir.png)
+This will create a directory in your home space on Sherlock called "spacy" with all the files in this repository.
+
+3. Once you have the files, you'll use packages.sh to set up your environment. First, let's move into our new directory::
+```
+cd spacy/
+```
+
+4. And run the shell script that sets up our environment::
+```
+./packages.sh
+```
+You should see some dialog from the computer as it installs different things:
+![shell script](/images/spacypull.png)
+
+5. With our environment set up, we just need to make one small tweak to our main script:
+```
+nano spacy.py
+```
+and change the line "corpus dir = /scratch/users/bcritt/corpus/" to the location of your corpus[^1]. For info on 
+transferring data to Sherlock, see: [https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). For the purposes of efficiency, it is best that you locate your corpus in 
+scratch like me, but it can be anywhere so long as you point the script to it.
+
+6. At this point, we're just about ready to run our main script. However, you'll want to make a few tweaks to 
+spacy.sbatch first. I've tuned most parameters for this process, but you'll need to change 
+the path for your *.out and *.err files, which give you feedback on what went wrong should your script fail. I route them to /out and /err directories in my home: you can do the same by changing my user 
+name to yours in the script. You may need to increase mem or time depending on the size of your corpus, but the 
+values given here are a pretty good starting place.
+
+ ```
+nano spacy.sbatch
+```
+to make any of these changes.
+
+Then you should be able to run with: 
+```
+sbatch spacy.sbatch
+```
+When it finishes running, you should see your output as a file called data.csv in the spacy 
+directory. This data can then be used as an input for some other process.
+
+### Notes
+
+[^1]: Scratch systems offer very fast read/write speeds, so they're good for things like I/O. However, data on 
+scratch is deleted every 60 days if not modified, so if you use scratch, you'll want to transfer results back to your home directory.
