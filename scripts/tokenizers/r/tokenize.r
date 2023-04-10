@@ -1,8 +1,9 @@
 install.packages("tokenizers", repos = "http://cran.us.r-project.org")
 install.packages("tidyverse", repos = "http://cran.us.r-project.org")
-
+install.packages("rjson", repos = "http://cran.us.r-project.org")
 library(tokenizers)
 library(tidyverse)
+library(rjson)
 
 
 
@@ -21,5 +22,7 @@ test <- cbind(files,text)
 df <- data.frame(test)
 df$tokens <- tokenize_words(df[,2])
 
-write.csv(df, "/scratch/users/bcritt/outputs/tokens.csv")
+jsonData <- toJSON(df)
+
+write(jsonData, "/scratch/users/bcritt/outputs/tokens.json")
 
