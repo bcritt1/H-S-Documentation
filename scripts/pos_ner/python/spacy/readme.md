@@ -8,8 +8,9 @@ recognition](https://spacy.io/usage/linguistic-features/#named-entities) functio
 The files consist of:
 
 1. [packages.sh](/scripts/pos_ner/python/spacy/packages.sh): A shell script that sets up your environment, loading the correct version of python and some dependencies..
-2. [spacy.py](/scripts/pos_ner/python/spacy/spacy.py): Runs huggingface on a corpus, outputing a .csv files with POS and NER for all the words in your corpus.
-3. [spacy.sbatch](/scripts/pos_ner/python/spacy/spacy.sbatch): Creates a batch job for spacy.py.
+2. [spacyNER.py](/scripts/pos_ner/python/spacy/spacyNER.py): Runs spacy on a corpus, outputing a .csv file with 
+POS and .json file with NER for all the words in your corpus.
+3. [spacyNER.sbatch](/scripts/pos_ner/python/spacy/spacyNER.sbatch): Creates a batch job for spacyNER.py.
 
 ## Usage instructions
 
@@ -43,7 +44,7 @@ You should see some dialog from the computer as it installs different things:
 
 5. With our environment set up, we just need to make one small tweak to our main script:
 ```
-nano spacy.py
+nano spacyNER.py
 ```
 and change the line "corpus dir = /scratch/users/bcritt/corpus/" to the location of your corpus[^1]. For info on 
 transferring data to Sherlock, see: [https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). For the purposes of efficiency, it is best that you locate your corpus in 
@@ -56,13 +57,13 @@ name to yours in the script. You may need to increase mem or time depending on t
 values given here are a pretty good starting place.
 
  ```
-nano spacy.sbatch
+nano spacyNER.sbatch
 ```
 to make any of these changes.
 
 Then you should be able to run with: 
 ```
-sbatch spacy.sbatch
+sbatch spacyNER.sbatch
 ```
 When it finishes running, you should see your output as a file called data.csv in the spacy 
 directory. This data can then be used as an input for some other process.
