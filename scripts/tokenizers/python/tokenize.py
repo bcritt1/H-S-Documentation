@@ -1,18 +1,13 @@
-#HOW IS FIRST BIT INTEGRATED?
-
-#Download necessary libraries collected in a txt file and added here piecemeal as needed. 
-#It would be cleaner to have everything in the text file.
-!pip3 install -r requirements1.txt
-!pip install --upgrade certifi
-!python -m nltk.downloader all
 import nltk
+import ssl
+import os
+import pandas as pd
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize.treebank import TreebankWordTokenizer
 nltk.download('punkt')
 
 
 # This may or may not be necessary for you. Gives python permission to access the internet so we can download libraries.
-import ssl
 try:
     _create_unverified_https_context = ssl._create_unverified_context
 except AttributeError:
@@ -21,8 +16,7 @@ else:
     ssl._create_default_https_context = _create_unverified_https_context
 
 # Read in a directory of txt files as the corpus using the os library.
-import os
-corpusdir = '/Users/brad/Documents/GitHub/Emerson/works_split_datamunging/'
+corpusdir = '/scratch/users/bcritt/corpus/'
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
@@ -41,3 +35,6 @@ def make_sentences(list_txt):
 
 # Call the function
 sentences = make_sentences(corpus)
+
+df = pd.DataFrame(sentences)
+df.to_csv('/scratch/users/bcritt/outputs/sentences.csv')
