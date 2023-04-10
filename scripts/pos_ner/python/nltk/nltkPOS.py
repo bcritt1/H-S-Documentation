@@ -8,9 +8,8 @@ except AttributeError:
 else:
     ssl._create_default_https_context = _create_unverified_https_context
 
-!pip3 install nltk
-!pip install --upgrade certifi
-#!python3 -m nltk.downloader all
+#import libs and nltk data
+import pandas as pd
 import nltk
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize.treebank import TreebankWordTokenizer
@@ -19,7 +18,7 @@ nltk.download('punkt')
 # Read in a directory of txt files as the corpus using the os library.
 
 import os
-corpusdir = '/Users/bcritt/Documents/StanfordProjects/Corpora/Emerson/emerson/'
+corpusdir = '/scratch/users/bcritt/corpus//'
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
@@ -48,14 +47,11 @@ pos = pos_tag(sentences)
 # Do named entity tagging of POS text
 ne = nltk.ne_chunk(pos)
 
-#import pandas for data outputs
-import pandas as pd
-
 # can convert pos to df and write out as csv
 df = pd.DataFrame(pos)
-df.to_csv('pos.csv')
+df.to_csv('/scratch/users/bcritt/outputs/pos.csv')
 
 # because of uneven data structure, better to export ne as json
 import json
-with open('data.json', 'w', encoding='utf-8') as f:
+with open('/scratch/users/bcritt/outputs/data.json', 'w', encoding='utf-8') as f:
     json.dump(ne, f, ensure_ascii=False, indent=4)
