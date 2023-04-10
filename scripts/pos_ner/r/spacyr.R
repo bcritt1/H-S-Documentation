@@ -3,7 +3,7 @@
 #ml load r/4.2.0
 #ml load python/3.9.0
 
-install.packages("reticulate")
+install.packages("reticulate"', repos = "http://cran.us.r-project.org")
 #worked without library(reticulate). I know there can be a python version error
 #when reticulate is loaded vs miniconda python vs system python
 reticulate::virtualenv_create(envname = 'python_environment', 
@@ -12,7 +12,7 @@ reticulate::virtualenv_create(envname = 'python_environment',
 #interactive here for installing miniconda. Can be pipped or install.packages()?
 reticulate::use_virtualenv("python_environment",required = TRUE)
 
-install.packages("spacyr")
+install.packages("spacyr"', repos = "http://cran.us.r-project.org")
 library(spacyr)
 
 #use_python("/usr/local/bin/python3")
