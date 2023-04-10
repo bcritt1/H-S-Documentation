@@ -5,7 +5,7 @@ from nltk.corpus import stopwords
 import ssl
 import re
 import string
-
+import pandas as pd
 
 # Read in a directory of txt files as the corpus using the os library.
 
