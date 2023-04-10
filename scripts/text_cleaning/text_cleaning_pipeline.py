@@ -62,5 +62,6 @@ words = [w for w in words if not w in stop_words]
 wl = nltk.WordNetLemmatizer()
 words = [wl.lemmatize(word) for word in words]
 
-#write out as csv for later use
-words.to_csv('/scratch/users/bcritt/outputs/stems.csv')
+# can convert pos to df and write out as csv
+df = pd.DataFrame(words)
+df.to_csv('/scratch/users/bcritt/outputs/stems.csv')

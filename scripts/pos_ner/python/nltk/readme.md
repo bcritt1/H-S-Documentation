@@ -1,4 +1,4 @@
-# Huggingface NER Workflow
+# NLTK NER Workflow
 
 This repo contains three simple files that execute spaCy's [parts of speech](https://spacy.io/usage/linguistic-features/#pos-tagging) and named (entity 
 recognition](https://spacy.io/usage/linguistic-features/#named-entities) functions on a directory of txt files.
