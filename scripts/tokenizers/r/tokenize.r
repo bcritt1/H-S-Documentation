@@ -1,5 +1,5 @@
-install.packages("tokenizers")
-install.packages("tidyverse")
+install.packages("tokenizers"', repos = "http://cran.us.r-project.org")
+install.packages("tidyverse"', repos = "http://cran.us.r-project.org")
 
 library(tokenizers)
 library(tidyverse)
