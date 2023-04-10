@@ -42,7 +42,7 @@ def make_sentences(list_txt):
 sentences = make_sentences(corpus)
 
 # pos tag sentences
-pos = pos_tag(sentences)
+pos = nltk.pos_tag(sentences)
 
 # Do named entity tagging of POS text
 ne = nltk.ne_chunk(pos)
