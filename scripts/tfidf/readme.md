@@ -27,7 +27,11 @@ svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/tfidf/ tfi
 ```
 ![nltkdir](/images/tfidfdir.png)
 This will create a directory in your home space on Sherlock called "tfidf" with all the files in this 
-repository.
+repository. You'll want to
+```
+ml purge
+```
+after this as subversion tends to interfere with python dependencies.
 
 3. Once you have the files, you'll use packages.sh to set up your environment. First, let's move into our new directory::
 ```
