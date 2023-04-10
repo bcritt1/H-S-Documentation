@@ -1,7 +1,15 @@
+import os
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+import ssl
+import re
+import string
+
+
 # Read in a directory of txt files as the corpus using the os library.
 
-import os
-corpusdir = '/Users/bcritt/Documents/StanfordProjects/Corpora/Emerson/emerson/'
+corpusdir = '/scratch/users/bcritt/corpus/'
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
@@ -9,7 +17,6 @@ for infile in os.listdir(corpusdir):
 
 # This may or may not be necessary for you. Gives python permission to access the internet so we can download libraries.
 
-import ssl
 try:
     _create_unverified_https_context = ssl._create_unverified_context
 except AttributeError:
@@ -21,33 +28,28 @@ else:
 #!pip3 install nltk
 #!python3 -m ntlk.downloader all
 
-import nltk
 
 # convert corpus to string instead of list
 sorpus = str(corpus)
 
 # this particular corpus has a multitude of "\n's" due to its original encoding. This removes them; code can be modified to remove other text artifacts before tokenizing.
 
-import re
 sorpus = re.sub(r'(\\n[ \t]*)+', '', sorpus)
 sorpus
 
 # could also split into words (or paragraphs, etc.)
-from nltk.tokenize import word_tokenize
 words = word_tokenize(sorpus)
 
 # convert to lower case
 words = [w.lower() for w in words]
 
 # remove punctuation from each word
-import string
 table = str.maketrans('', '', string.punctuation)
 stripped = [w.translate(table) for w in words]
 # remove remaining tokens that are not alphabetic
 words = [word for word in stripped if word.isalpha()]
 
 # filter out stop words
-from nltk.corpus import stopwords
 stop_words = set(stopwords.words('english'))
 words = [w for w in words if not w in stop_words]
 
@@ -59,3 +61,6 @@ words = [w for w in words if not w in stop_words]
 # lemmatizing words
 wl = nltk.WordNetLemmatizer()
 words = [wl.lemmatize(word) for word in words]
+
+#write out as csv for later use
+words.to_csv('/scratch/users/bcritt/outputs/stems.csv')
