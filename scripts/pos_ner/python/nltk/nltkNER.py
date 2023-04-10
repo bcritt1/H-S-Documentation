@@ -11,14 +11,14 @@ else:
 #import libs and nltk data
 import pandas as pd
 import nltk
-from nltk.tokenize import sent_tokenize
+from nltk.tokenize import word_tokenize
 from nltk.tokenize.treebank import TreebankWordTokenizer
 nltk.download('punkt')
 
 # Read in a directory of txt files as the corpus using the os library.
 
 import os
-corpusdir = '/scratch/users/bcritt/corpus//'
+corpusdir = '/scratch/users/bcritt/corpus/'
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
