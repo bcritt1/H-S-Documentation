@@ -7,4 +7,4 @@
 #SBATCH -c 1
 #SBATCH --mem=32GB
 module load python/3.9.0
-python3 tokenize.py
+python3 nltkTokenize.py
