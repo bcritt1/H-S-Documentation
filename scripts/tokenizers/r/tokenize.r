@@ -6,7 +6,7 @@ library(tidyverse)
 
 
 
-input_loc <- "/Users/bcritt/Documents/StanfordProjects/Corpora/Emerson/emerson"
+input_loc <- "/scratch/users/bcritt/corpus/"
 files <- dir(input_loc, full.names = TRUE)
 text <- c()
 for (f in files) {
@@ -21,5 +21,5 @@ test <- cbind(files,text)
 df <- data.frame(test)
 df$tokens <- tokenize_words(df[,2])
 
-write.csv(df, "data.csv")
+write.csv(df, "/scratch/users/bcritt/outputs/tokens.csv")
 
