@@ -8,8 +8,8 @@ import string
 import pandas as pd
 
 # Read in a directory of txt files as the corpus using the os library.
-
-corpusdir = '/scratch/users/bcritt/corpus/'
+user = os.getenv('USER')
+corpusdir = '/scratch/{}/bcritt/corpus/'.format(user)
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
@@ -23,11 +23,6 @@ except AttributeError:
     pass
 else:
     ssl._create_default_https_context = _create_unverified_https_context
-
-# (done in terminal) 
-#!pip3 install nltk
-#!python3 -m ntlk.downloader all
-
 
 # convert corpus to string instead of list
 sorpus = str(corpus)
@@ -64,4 +59,4 @@ words = [wl.lemmatize(word) for word in words]
 
 # can convert pos to df and write out as csv
 df = pd.DataFrame(words)
-df.to_csv('/scratch/users/bcritt/outputs/stems.csv')
+df.to_csv('/scratch/users/{}/outputs/stems.csv'.format(user))
