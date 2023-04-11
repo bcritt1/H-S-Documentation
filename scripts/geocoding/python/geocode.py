@@ -15,7 +15,8 @@ else:
     ssl._create_default_https_context = _create_unverified_https_context
 
 # Read in corpus from scratch
-corpusdir = '/scratch/users/bcritt/corpus/'
+user = os.getenv('USER')
+corpusdir = '/scratch/users/{}/corpus/.format(user)'
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
@@ -52,3 +53,5 @@ def geocode(locality):
         return('-1')
 
 places['geocoded'] = places[0].apply(geocode)
+
+places.to_csv('/scratch/users/{}/outputs/places.csv'.format(user))

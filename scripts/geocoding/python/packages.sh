@@ -1,5 +1,0 @@
-#! /usr/bin/bash
-
-ml python/3.9.0
-pip3 install --user -r requirements.txt
-python3 -m spacy download en_core_web_sm
