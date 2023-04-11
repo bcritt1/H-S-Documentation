@@ -4,7 +4,7 @@ import spacy
 import os
 import pandas as pd
 import numpy as np
-
+import re
 
 
 nlp = spacy.load("en_core_web_sm")
@@ -19,6 +19,9 @@ for infile in os.listdir(corpusdir):
 
 # convert corpus to string for use with spacy
 sorpus = str(corpus)
+
+# this particular corpus has a multitude of "\n's" due to its original encoding. This removes them; code can be modified to remove other text artifacts before tokenizing.
+sorpus = re.sub(r'(\\n[ \t]*)+', '', sorpus)
 
 # tag text with POS info
 doc = nlp(sorpus)
