@@ -23,21 +23,20 @@ rsync -a ~/path/to/local/data yourSUNetid@login.sherlock.stanford.edu:/scratch/u
 You'll need to tweak the local path because I don't know where your files are located, but the remote path (after the ":") should work fine to get your corpus into scratch, a fast storage system where it's best to do file 
 reading/writing.
 
-1. Now we can log onto Sherlock using ssh in the Terminal program on Mac[^1]. with the syntax: 
+2. Now we can log onto Sherlock using ssh in the Terminal program on Mac[^1]. with the syntax: 
 ```
 ssh yourSUNetID@sherlock.stanford.edu
 ```
 ### File Management
 
-2. Once you are logged in, you'll want to have access to these files, which you can get with a couple simple commands. First, we need to install a program called subversion:
+3. Once you are logged in, you'll want to have access to these files, which you can get with a couple simple commands. First, we need to install a program called subversion:
 ```
-module load system subversion/1.12.2
+ml system subversion
 ```
 and use that program to download the files:
 ```
 svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/pos_ner/python/nltk/ nltk
 ```
-![nltkdir](/images/nltkdir.png)
 This will create a directory in your home space on Sherlock called "nltk" with all the files in this repository.
 
 Once you have the directory--you can ```ls``` to verify it's there--
@@ -67,7 +66,7 @@ watch squeue -u $USER
 When it finishes running, you should see your outputs as .csv and .json files in the outputs/ 
 directory on scratch. This data can then be used as an input for other processes, or analyzed on its own.
 
-### Notes
+#### Notes
 
 [^1]: The syntax would be the same if you use Terminal on Linux or Windows Subsystem for Linux [(WSL)](https://learn.microsoft.com/en-us/windows/wsl/install). Using other programs is possible, but documenting them here would be 
 impossible. 
