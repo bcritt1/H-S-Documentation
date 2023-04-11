@@ -1,11 +1,17 @@
 #load model, increase max str length for large corpora. Can check length with len(corpus)
 
 import spacy 
+import os
+import pandas as pd
+import numpy as np
+
+
+
 nlp = spacy.load("en_core_web_sm")
 nlp.max_length = 5000000
 
-import os
-corpusdir = '/scratch/users/bcritt/corpus/'
+user = os.getenv('USER')
+corpusdir = '/scratch/users/{}/corpus/'.format(user)
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
@@ -21,14 +27,12 @@ for token in doc:
     pos_output.append(token.text + " " + token.tag_ + " " + token.pos_)
 
 # convert to pd df for analysis
-import pandas as pd
-
 pos_df = pd.DataFrame(pos_output)
 pos_df[['word','pos_tag', 'pos']] = pos_df[0].str.split(" ", 3, expand=True)
 pos_df = pos_df.drop(pos_df.columns[0], axis=1)
 
 #write out as csv for later use
-pos_df.to_csv('/scratch/users/bcritt/outputs/pos.csv')
+pos_df.to_csv('/scratch/users/{}/outputs/pos.csv'.format(user))
 
 # tag sorpus with NER data
 doc = nlp(sorpus)
@@ -42,10 +46,8 @@ ner_df[['word','entity_type']] = ner_df[0].str.split(" ", 2, expand=True)
 ner_df = ner_df.drop(ner_df.columns[0], axis=1)
 
 # save only rows with entity info
-import numpy as np
-
 ner_df['entity_type'].replace('', np.nan, inplace=True)
 ner_df.dropna(subset=['entity_type'], inplace=True)
 
 #write out as csv for later use
-ner_df.to_csv('/scratch/users/bcritt/outputs/ner.csv')
+ner_df.to_csv('/scratch/users/{}/outputs/ner.csv'.format(user))
