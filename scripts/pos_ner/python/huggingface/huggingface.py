@@ -3,7 +3,8 @@ import os
 import json
 
 # Read in corpus
-corpusdir = '/scratch/users/<USERNAME>/corpus/'
+user = os.getenv('USER')
+corpusdir = '/scratch/users/{}/corpus/'.format(user)
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
@@ -21,5 +22,5 @@ nlp = pipeline('ner', model=model, tokenizer=tokenizer, aggregation_strategy="si
 entities = nlp(corpus)
 
 # Export data to json
-with open('data.json', 'w', encoding='utf-8') as f:
+with open('/scratch/users/{}/outputs/data.json'.format(user), 'w', encoding='utf-8') as f:
     json.dump(str(entities), f, ensure_ascii=False, indent=4)
