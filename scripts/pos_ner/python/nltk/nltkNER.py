@@ -2,6 +2,7 @@
 import pandas as pd
 import ssl
 import os
+import json
 
 # give nltk permission to download data in python
 try:
@@ -19,8 +20,8 @@ nltk.download('punkt')
 
 # Read in a directory of txt files as the corpus using the os library.
 
-user = os.environ['USER']
-corpusdir = '/scratch/users/user/corpus/'
+user = os.getenv('USER')
+corpusdir = '/scratch/users/{}/corpus/'.format(user)
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
@@ -51,10 +52,9 @@ ne = nltk.ne_chunk(pos)
 
 # can convert pos to df and write out as csv
 df = pd.DataFrame(pos)
-df.to_csv('/scratch/users/user/outputs/pos.csv')
+df.to_csv('/scratch/users/{}/outputs/pos.csv'.format(user))
 
 # because of uneven data structure, better to export ne as json
-import json
-with open('/scratch/users/user/outputs/data.json', 'w', encoding='utf-8') as f:
+with open('/scratch/users/{}/outputs/data.json'.format(user), 'w', encoding='utf-8') as f:
     json.dump(ne, f, ensure_ascii=False, indent=4)
 
