@@ -1,14 +1,14 @@
 # SpaCy NER Workflow
 
-This repo contains two simple files that execute spacy's [parts of speech](https://spacy.io/usage/linguistic-features/#pos-tagging) and [named entity](https://spacy.io/usage/linguistic-features/#named-entities) taggers on a directory of 
+This repo contains two simple files that execute spaCy's [parts of speech](https://spacy.io/usage/linguistic-features/#pos-tagging) and [named entity](https://spacy.io/usage/linguistic-features/#named-entities) taggers on a directory of 
 .txt files.
 
 ## File Overview
 
 The files consist of:
 
-1. [spacyNER.py](/scripts/pos_ner/python/spacy/spacyNER.py): Runs ntlk on a corpus, outputing a .csv file with 
-POS and .json file with NER for all the words in your corpus.
+1. [spacyNER.py](/scripts/pos_ner/python/spacy/spacyNER.py): Runs ntlk on a corpus, outputing .csv files with 
+POS and NER for all the words in your corpus.
 2. [spacyNER.sbatch](/scripts/pos_ner/python/spacy/spacyNER.sbatch): Creates a batch job for spacyNER.py.
 
 ## Usage instructions
