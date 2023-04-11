@@ -1,15 +1,14 @@
 # NLTK NER Workflow
 
-This repo contains three simple files that execute spaCy's [parts of speech](https://spacy.io/usage/linguistic-features/#pos-tagging) and named (entity 
-recognition](https://spacy.io/usage/linguistic-features/#named-entities) functions on a directory of txt files.
+This repo contains two simple files that execute [nltk's](https://www.nltk.org/index.html) parts of speech and named entity taggers on a directory of .txt files.
 
 ## File Overview
 
 The files consist of:
 
-1. [nltkNER.py](/scripts/pos_ner/python/spacy/spacy.py): Runs ntlk on a corpus, outputing a .csv file with 
+1. [nltkNER.py](/scripts/pos_ner/python/nltk/nltkNER.py): Runs ntlk on a corpus, outputing a .csv file with 
 POS and .json file with NER for all the words in your corpus.
-2. [nltkNER.sbatch](/scripts/pos_ner/python/spacy/spacy.sbatch): Creates a batch job for nltkNER.py.
+2. [nltkNER.sbatch](/scripts/pos_ner/python/nltk/nltkNER.sbatch): Creates a batch job for nltkNER.py.
 
 ## Usage instructions
 
@@ -20,7 +19,7 @@ POS and .json file with NER for all the words in your corpus.
 this, but if you prefer another, go with that. For rsync, you'd use the command 
 ``` 
 rsync -a ~/path/to/local/data yourSUNetid@login.sherlock.stanford.edu:/scratch/users/$USER/corpus/
-''' 
+```
 You'll need to tweak the local path because I don't know where your files are located, but the remote path (after the ":") should work fine to get your corpus into scratch, a fast storage system where it's best to do file 
 reading/writing.
 
