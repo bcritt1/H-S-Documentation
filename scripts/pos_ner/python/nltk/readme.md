@@ -7,10 +7,9 @@ recognition](https://spacy.io/usage/linguistic-features/#named-entities) functio
 
 The files consist of:
 
-1. [packages.sh](/scripts/pos_ner/python/spacy/packages.sh): A shell script that sets up your environment, loading the correct version of python and some dependencies..
-2. [nltkNER.py](/scripts/pos_ner/python/spacy/spacy.py): Runs ntlk on a corpus, outputing a .csv file with 
+1. [nltkNER.py](/scripts/pos_ner/python/spacy/spacy.py): Runs ntlk on a corpus, outputing a .csv file with 
 POS and .json file with NER for all the words in your corpus.
-3. [spacy.sbatch](/scripts/pos_ner/python/spacy/spacy.sbatch): Creates a batch job for nltkNER.py.
+2. [nltkNER.sbatch](/scripts/pos_ner/python/spacy/spacy.sbatch): Creates a batch job for nltkNER.py.
 
 ## Usage instructions
 
@@ -30,19 +29,17 @@ svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/pos_ner/py
 ![nltkdir](/images/nltkdir.png)
 This will create a directory in your home space on Sherlock called "nltk" with all the files in this repository.
 
-3. Once you have the files, you'll use packages.sh to set up your environment. First, let's move into our new directory::
+Once you have the directory--you can ```ls``` to verify it's there--
+```
+ml purge
+```
+to remove subversion from your environment. 
+
+3. Now, let's move into our new directory::
 ```
 cd nltk/
 ```
-
-4. And run the shell script that sets up our environment::
-```
-./packages.sh
-```
-You should see some dialog from the computer as it installs different things:
-![shell script](/images/nltkpull.png)
-
-5. With our environment set up, we just need to make one small tweak to our main script:
+4. We just need to make one small tweak to our main script:
 ```
 nano nltkNER.py
 ```
