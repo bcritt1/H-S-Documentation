@@ -5,7 +5,6 @@
 #SBATCH -p hns
 #SBATCH -c 1
 #SBATCH --mem=32GB
-mkdir ../out ../err
 module load python/3.9.0
 pip3 install nltk
 pip3 install --upgrade certifi

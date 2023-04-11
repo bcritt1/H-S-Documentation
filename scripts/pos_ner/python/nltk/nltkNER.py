@@ -1,6 +1,9 @@
-# This may or may not be necessary for you. Gives python permission to access the internet so we can download libraries.
-
+# import general libraries
+import pandas as pd
 import ssl
+import os
+
+# give nltk permission to download data in python
 try:
     _create_unverified_https_context = ssl._create_unverified_context
 except AttributeError:
@@ -8,8 +11,7 @@ except AttributeError:
 else:
     ssl._create_default_https_context = _create_unverified_https_context
 
-#import libs and nltk data
-import pandas as pd
+# download language models in nltk
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.tokenize.treebank import TreebankWordTokenizer
@@ -17,8 +19,8 @@ nltk.download('punkt')
 
 # Read in a directory of txt files as the corpus using the os library.
 
-import os
-corpusdir = '/scratch/users/bcritt/corpus/'
+user = os.environ['USER']
+corpusdir = '/scratch/users/user/corpus/'
 corpus = []
 for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
@@ -49,9 +51,10 @@ ne = nltk.ne_chunk(pos)
 
 # can convert pos to df and write out as csv
 df = pd.DataFrame(pos)
-df.to_csv('/scratch/users/bcritt/outputs/pos.csv')
+df.to_csv('/scratch/users/user/outputs/pos.csv')
 
 # because of uneven data structure, better to export ne as json
 import json
-with open('/scratch/users/bcritt/outputs/data.json', 'w', encoding='utf-8') as f:
+with open('/scratch/users/user/outputs/data.json', 'w', encoding='utf-8') as f:
     json.dump(ne, f, ensure_ascii=False, indent=4)
+

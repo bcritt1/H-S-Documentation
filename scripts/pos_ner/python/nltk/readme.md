@@ -13,10 +13,22 @@ POS and .json file with NER for all the words in your corpus.
 
 ## Usage instructions
 
-1. ssh into sherlock with the syntax: 
+### Setting up and Connecting to Sherlock
+
+1. Before we log onto Sherlock, let's make sure we're going to have everything we need there and move inputs/corpus onto Sherlock. For info on transferring data to Sherlock, see:
+[https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). [rsync](https://www.sherlock.stanford.edu/docs/storage/data-transfer/#rsync) is probably the best program for
+this, but if you prefer another, go with that. For rsync, you'd use the command 
+``` 
+rsync -a ~/path/to/local/data yourSUNetid@login.sherlock.stanford.edu:/scratch/users/$USER/corpus/
+''' 
+You'll need to tweak the local path because I don't know where your files are located, but the remote path (after the ":") should work fine to get your corpus into scratch, a fast storage system where it's best to do file 
+reading/writing.
+
+1. Now we can log onto Sherlock using ssh in the Terminal program on Mac[^1]. with the syntax: 
 ```
 ssh yourSUNetID@sherlock.stanford.edu
 ```
+### File Management
 
 2. Once you are logged in, you'll want to have access to these files, which you can get with a couple simple commands. First, we need to install a program called subversion:
 ```
@@ -35,37 +47,28 @@ ml purge
 ```
 to remove subversion from your environment. 
 
-3. Now, let's move into our new directory::
+3. Let's also make three directories for the outputs of our process:
 ```
-cd nltk/
+mkdir out err /scratch/users/$USER/outputs
 ```
-4. We just need to make one small tweak to our main script:
-```
-nano nltkNER.py
-```
-and change the line "corpus dir = /scratch/users/bcritt/corpus/" to the location of your corpus[^1]. For info on 
-transferring data to Sherlock, see: [https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). For the purposes of efficiency, it is best that you locate your corpus in 
-scratch like me, but it can be anywhere so long as you point the script to it.
+### Running Code
 
-6. At this point, we're just about ready to run our main script. However, you'll want to make a few tweaks to 
-spacy.sbatch first. I've tuned most parameters for this process, but you'll need to change 
-the path for your *.out and *.err files, which give you feedback on what went wrong should your script fail. I route them to /out and /err directories in my home: you can do the same by changing my user 
-name to yours in the script. You may need to increase mem or time depending on the size of your corpus, but the 
-values given here are a pretty good starting place.
-
- ```
-nano nltkNER.sbatch
+4. Now, let's move into our new directory
 ```
-to make any of these changes.
-
-Then you should be able to run with: 
+cd nltk
+```
+and submit our sbatch file to slurm, Sherlock's job scheduler: 
 ```
 sbatch nltkNER.sbatch
 ```
-When it finishes running, you should see your output as a file called data.csv in the spacy 
-directory. This data can then be used as an input for some other process.
+You can watch your program run with
+```
+watch squeue -u $USER
+```
+When it finishes running, you should see your outputs as .csv and .json files in the outputs/ 
+directory on scratch. This data can then be used as an input for other processes, or analyzed on its own.
 
 ### Notes
 
-[^1]: Scratch systems offer very fast read/write speeds, so they're good for things like I/O. However, data on 
-scratch is deleted every 60 days if not modified, so if you use scratch, you'll want to transfer results back to your home directory.
+[^1]: The syntax would be the same if you use Terminal on Linux or Windows Subsystem for Linux [(WSL)](https://learn.microsoft.com/en-us/windows/wsl/install). Using other programs is possible, but documenting them here would be 
+impossible. 
