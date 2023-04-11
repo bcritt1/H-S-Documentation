@@ -93,7 +93,7 @@ python3 spacyNER.py					# run the python script
 
 ### spacyNER.py
 
-The python file contains pretty frequent in-line documentation, which you can check out using either ```cat spacyNER.py``` or ```nano spacyNER.py``` for more detail. As an outline, the script loads language models for NLTK, uses them on 
+The python file contains pretty frequent in-line documentation, which you can check out using either ```cat spacyNER.py``` or ```nano spacyNER.py``` for more detail. As an outline, the script loads language models for spaCy, uses them on 
 a 
 corpus of files that I route it to automatically using environment variables (it reads your username from Sherlock and uses that to find your files) to perform word tokenization, parts of speech tagging, and named entity tagging 
 progressively. Because the processes build on each other (one's output is the next's input), there aren't a ton of tweaks to be made. While some more extensive text cleaning is generally desirable in NLP, NER tagging tends to rely to 
