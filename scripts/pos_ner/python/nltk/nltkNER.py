@@ -3,6 +3,7 @@ import pandas as pd
 import ssl
 import os
 import json
+import re
 
 # give nltk permission to download data in python
 try:
@@ -15,8 +16,6 @@ else:
 # download language models in nltk
 import nltk
 from nltk.tokenize import word_tokenize
-from nltk.tokenize.treebank import TreebankWordTokenizer
-nltk.download('punkt')
 
 # Read in a directory of txt files as the corpus using the os library.
 
@@ -27,25 +26,17 @@ for infile in os.listdir(corpusdir):
     with open(corpusdir+infile, errors='ignore') as fin:
         corpus.append(fin.read())
 
-#define the tokenizer NLTK (Natural Language Toolkit) will use
-tokenizer = TreebankWordTokenizer()
+# convert corpus to string instead of list as required by nltk tokenizer
+sorpus = str(corpus)
 
-# function to word tokenize corpus
-def make_sentences(list_txt):
-    all_txt = []
-    for txt in list_txt:
-        lower_txt = txt.lower()
-        sentences = word_tokenize(lower_txt)
-        #sentences = [tokenizer.tokenize(sent) for sent in sentences]
-        all_txt += sentences
-        print(len(sentences))  
-    return all_txt
+# this particular corpus has a multitude of "\n's" due to its original encoding. This removes them; code can be modified to remove other text artifacts before tokenizing.
+sorpus = re.sub(r'(\\n[ \t]*)+', '', sorpus)
 
-# call function
-sentences = make_sentences(corpus)
+# tokenize into words
+words = word_tokenize(sorpus)
 
 # pos tag sentences
-pos = nltk.pos_tag(sentences)
+pos = nltk.pos_tag(words)
 
 # Do named entity tagging of POS text
 ne = nltk.ne_chunk(pos)
