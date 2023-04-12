@@ -99,13 +99,7 @@ The python file contains pretty frequent in-line documentation, which you can ch
 uses them on 
 a 
 corpus of files that I route it to automatically using environment variables (it reads your username from Sherlock 
-and uses that to find your files) to perform word tokenization and a word embedding. There are two options here for 
-implementation. Gensim leverages neural nets to apply transfer learning to word embeddings (it applies things it 
-knows about language from large language models to any corpus you feed it). In most cases, you'll want to apply this 
-transfer learning. In some cases, though, you may want to just do an embedding of your corpus. For instance, I wrote 
-a chapter on the distinct language of Ralph Waldo Emerson, and for that, I wanted to maintain his unique syntax and 
-thus didn't apply any large language models. There are notes in the file of what you can comment out to create just 
-a local embedding. If you have issues, contact [us](mailto:srcc-support@stanford.edu) and ask for Brad Rittenhouse.
+and uses that to find your files) to perform word tokenization and a word embedding. If you have issues, contact [us](mailto:srcc-support@stanford.edu) and ask for Brad Rittenhouse.
 
  #### Notes
 
