@@ -66,5 +66,7 @@ model = gensim.models.Word2Vec(sentences, min_count=0, vector_size=100, sg = 1)
 #Save the model locally so we don't need to retrain it every time. 
 model.save('/scratch/users/{}/outputs/my_model'.format(user))
 
-#If you save your model, in the future you can start at this line, loading in the model from disk. 
-my_model = gensim.models.Word2Vec.load('/scratch/users/{}/my_model'.format(user)) 
+#If you save your model, in the future you can start at this line, loading in the model from disk. There are lots of ways to explore the embedding: 
+#https://radimrehurek.com/gensim/auto_examples/tutorials/run_word2vec.html#sphx-glr-auto-examples-tutorials-run-word2vec-py. This is probably done best with a Sherlock [interactive 
+#session](https://www.sherlock.stanford.edu/docs/user-guide/running-jobs/#interactive-jobs) or [OnDemand](https://login.sherlock.stanford.edu/)
+ #my_model = gensim.models.Word2Vec.load('/scratch/users/{}/outputs/my_model'.format(user)) 
