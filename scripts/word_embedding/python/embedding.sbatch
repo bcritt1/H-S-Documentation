@@ -6,7 +6,8 @@
 #SBATCH -c 1
 #SBATCH --mem=32GB
 module load python/3.9.0
-pip3 install --user -r requirements.txt
+module load gensim
 pip3 install --user --upgrade certifi
+pip3 install nltk
 python3 -m nltk.downloader all
 python3 embedding.py
