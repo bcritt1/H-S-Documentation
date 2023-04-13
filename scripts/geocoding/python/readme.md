@@ -9,8 +9,8 @@ The files consist of:
 
 1. [packages.sh](/scripts/geocoding/python/packages.sh): A shell script that sets up your environment, loading the correct version of python, some dependencies, and installing the python packages in requirements.txt.
 2. [requirements.txt](/scripts/geocoding/python/requirements.txt): You shouldn't need to touch this. Simply tells python which packages it needs to install to run geocoding.py.
-3. [geocoding.py](/scripts/geocoding/python/geocoding.py): Runs spaCy and Nominatum, outputing a .csv file with all the places (geopolitical entities) in your corpus and their lat/long coordinates.
-4. [geocoding.sbatch](/scripts/geocoding/python/geocoding.sbatch): Creates a batch job for geocoding.py.
+3. [geocode.py](/scripts/geocoding/python/geocoding.py): Runs spaCy and Nominatum, outputing a .csv file with all the places (geopolitical entities) in your corpus and their lat/long coordinates.
+4. [geocode.sbatch](/scripts/geocoding/python/geocoding.sbatch): Creates a batch job for geocoding.py.
 
 ## Usage instructions
 
