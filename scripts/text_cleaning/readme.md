@@ -1,17 +1,13 @@
 # Text Cleaning Workflow
 
-This repo contains three simple files that execute elements of NLTK's text cleaning workflow on a directory of txt files.
+This repo contains two simple files that executes many forms of NLTK's text cleaning functionality on a directory of txt files.
 
 ## File Overview
 
 The files consist of:
 
-1. [packages.sh](/scripts/text_cleaning/packages.sh): A shell script that sets up your environment, loading the 
-correct version of python and some dependencies.
-2. [text_cleaning_pipeline.py](/scripts/text_cleaning/text_cleaning_pipeline.py): Runs ntlk functions on a corpus, 
-with the option to output a csv with results at any point in the process.
-3. [text_cleaning.sbatch](/scripts/text_cleaning/text_cleaning.sbatch): Creates a batch job for 
-text_cleaning_pipeline.py.
+1. [text_cleaning_pipeline.py](/scripts/tfidf/text_cleaning_pipeline.py): Runs tfidf on a corpus, exporting a .csv organized by input files.
+2. [text_cleaning.sbatch](/scripts/tfidf/text_cleaning.sbatch): Creates a batch job for text_cleaning_pipeline.py.
 
 ## Usage instructions
 
@@ -22,55 +18,37 @@ ssh yourSUNetID@sherlock.stanford.edu
 
 2. Once you are logged in, you'll want to have access to these files, which you can get with a couple simple commands. First, we need to install a program called subversion:
 ```
-module load system subversion/1.12.2
+ml system subversion
 ```
 and use that program to download the files:
 ```
 svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/text_cleaning/ text_cleaning
 ```
-![nltkdir](/images/cleaningdir.png)
 This will create a directory in your home space on Sherlock called "text_cleaning" with all the files in this 
-repository.
+repository. You'll want to
+```
+ml purge
+```
+after this as subversion tends to interfere with python dependencies.
 
 3. Once you have the files, you'll use packages.sh to set up your environment. First, let's move into our new directory::
 ```
 cd text_cleaning/
 ```
 
-4. And run the shell script that sets up our environment::
+4. At this point, you're basically ready to run the script.
 ```
-./packages.sh
+sbatch text_cleaning_pipeline.sbatch
 ```
-You should see some dialog from the computer as it installs different things:
-![shell script](/images/cleaningpull.png)
-
-5. With our environment set up, we just need to make one small tweak to our main script:
-```
-nano text_cleaning_pipeline.py
-```
-and change the line "corpus dir = /scratch/users/bcritt/corpus/" to the location of your corpus[^1]. For info on 
-transferring data to Sherlock, see: [https://www.sherlock.stanford.edu/docs/storage/data-transfer/](https://www.sherlock.stanford.edu/docs/storage/data-transfer/). For the purposes of efficiency, it is best that you locate your corpus in 
-scratch like me, but it can be anywhere so long as you point the script to it. There is a .csv output line at the 
-end of this file that can be added after any intermediate step, though you'll need to do some output control to 
-prevent each .csv from overwriting the next.
-
-6. At this point, we're just about ready to run our main script. However, you'll want to make a few tweaks to 
-text_cleaning.sbatch first. I've tuned most parameters for this process, but you'll need to change 
-the path for your *.out and *.err files, which give you feedback on what went wrong should your script fail. I route them to /out and /err directories in my home: you can do the same by changing my user 
-name to yours in the script. You may need to increase mem or time depending on the size of your corpus, but the 
-values given here are a pretty good starting place.
-
- ```
-nano text_cleaning.sbatch
-```
-to make any of these changes.
-
-Then you should be able to run with: 
-```
-sbatch text_cleaning.sbatch
-```
-When it finishes running, you should see your output as a .csv file in outputs/ in scratch. This data can then be 
+When it finishes running, you should see your output as a .csv file in outputs/text_cleaning in scratch. This data 
+can then be 
 used as an input for some other process.
+
+## Code Explanation
+
+1. text_cleaning_pipeline.py: This file performs standard forms of preprocessing for text files including tokenization, lowercasing, punctuation removal, stop word filtering, and lemmatization. The output/input variable (words) remains 
+the same throughout the script, so you should be able to comment out any processes you don't desire and still run the script.
+2. text_cleaning.sbatch: Pretty standard sbatch file. Depending on the size of the corpus, "time" and "mem" may need to be tweaked if you are getting "wall time" or "out of memory" errors respectively.
 
 ### Notes
 
