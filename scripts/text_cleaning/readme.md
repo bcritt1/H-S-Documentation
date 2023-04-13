@@ -46,9 +46,14 @@ used as an input for some other process.
 
 ## Code Explanation
 
-### text_cleaning_pipeline.py: This file performs standard forms of preprocessing for text files including tokenization, lowercasing, punctuation removal, stop word filtering, and lemmatization. The output/input variable (words) remains 
+### text_cleaning_pipeline.py 
+
+This file performs standard forms of preprocessing for text files including tokenization, lowercasing, punctuation removal, stop word filtering, and lemmatization. The output/input variable (words) remains 
 the same throughout the script, so you should be able to comment out any processes you don't desire and still run the script.
-###  text_cleaning.sbatch: Pretty standard sbatch file. Depending on the size of the corpus, "time" and "mem" may need to be tweaked if you are getting "wall time" or "out of memory" errors respectively.
+
+###  text_cleaning.sbatch 
+
+Pretty standard sbatch file. Depending on the size of the corpus, "time" and "mem" may need to be tweaked if you are getting "wall time" or "out of memory" errors respectively.
 
 ```bash
 #!/usr/bin/bash
