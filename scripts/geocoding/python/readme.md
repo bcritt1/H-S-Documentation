@@ -7,10 +7,9 @@ This repo contains four simple files that execute spaCy's [NER](https://spacy.io
 
 The files consist of:
 
-1. [packages.sh](/scripts/geocoding/python/packages.sh): A shell script that sets up your environment, loading the correct version of python, some dependencies, and installing the python packages in requirements.txt.
-2. [requirements.txt](/scripts/geocoding/python/requirements.txt): You shouldn't need to touch this. Simply tells python which packages it needs to install to run geocoding.py.
-3. [geocode.py](/scripts/geocoding/python/geocoding.py): Runs spaCy and Nominatum, outputing a .csv file with all the places (geopolitical entities) in your corpus and their lat/long coordinates.
-4. [geocode.sbatch](/scripts/geocoding/python/geocoding.sbatch): Creates a batch job for geocoding.py.
+1. [requirements.txt](/scripts/geocoding/python/requirements.txt): You shouldn't need to touch this. Simply tells python which packages it needs to install to run geocoding.py.
+2. [geocode.py](/scripts/geocoding/python/geocoding.py): Runs spaCy and Nominatum, outputing a .csv file with all the places (geopolitical entities) in your corpus and their lat/long coordinates.
+3. [geocode.sbatch](/scripts/geocoding/python/geocoding.sbatch): Creates a batch job for geocoding.py.
 
 ## Usage instructions
 
@@ -50,7 +49,31 @@ to make any of these changes.
 
 When it finishes running, you should see your output as a file called places.csv in your outputs directory at /scratch/users/$USERNAME/outputs/[^3].
 
-### Notes
+## Code Overview
+
+### geocode.py
+
+Fairly detailed in-line notes in the script itself, so check that out for more detail. Generally, the code reads in your corpus, tokenizes the corpus, and performs named entity recognition. One of the outputs of the last process is the 
+labeling of places as Geopolitical Entities (GPEs). We then filter the data to retain only GPEs and feed those place names into Nominatim, which returns lat/long coordinates for those places.
+
+### geocode.sbatch
+
+```bash
+#!/usr/bin/bash
+#SBATCH --job-name=geocode					# gives the job a descriptive name that slurm will use
+#SBATCH --output=/home/users/%u/out/geocode.%j.out		# the filepath slurm will use for output files. I've configured this so it automatically inserts variables for your username (%u) and the job name (%j) above.
+#SBATCH --error=/home/users/%u/err/geocode.%j.err		# the filepath slurm will use for error files. I've configured this so it automatically inserts variables for your username (%u) and the job name (%j) above.
+#SBATCH -p hns							# the partition slurm will use for the job. Here it is hns (humanities and sciences), but you can use other partions (sh_part to see which you can access)
+#SBATCH -c 1							# number of cores to use. This should be 1 unless you've rewritten the code to run in parallel
+#SBATCH --mem=32GB						# memory to use. 32GB should be plenty, but if you're getting a memory error, you can increase
+module load python/3.9.0					# load the most recent version of python on Sherlock
+pip3 install nltk						# download nltk
+pip install --upgrade certifi					# allow nltk to download files
+python3 -m nltk.downloader all					# download nltk files
+python3 geocode.py						# run the python script
+```
+
+#### Notes
 
 [^1]: Google's geocoding API may offer better accuracy, but it can also rack up charges fast on large datasets. Nominatum is free and open-source.
 [^2]: Scratch systems offer very fast read/write speeds, so they're good for things like I/O. However, data on scratch is deleted every 60 days if not modified, so if you use scratch, you'll want to transfer results back to your home directory.
