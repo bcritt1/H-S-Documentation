@@ -47,30 +47,58 @@ svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/pos_ner/py
 ``` 
 ![hugpull](/images/hugpull.png)
 You'll see a list of things the program downloaded once the program runs.
-
-Now type
+While we're setting things up, let's create a few more directories:
+```bash
+mkdir out/ err/ outputs/
+```
+Now type:
 ```bash
 ls
 ```
-which stands for "list", and you should see a new directory called "huggingface". If you type ```cd hug``` then the ```Tab``` button, the shell will complete your command to ```cd huggingface```. Because ```cd``` means "change 
+which stands for "list", and you should now see our "huggingface" directory, along with "out", "err", and "outputs. If you type ```cd hug``` then the ```Tab``` button, the shell will complete your command to ```cd huggingface```. Because ```cd``` means "change 
 directory", when you press ```Enter```, you will move into the huggingface directory. You can pwd to confirm you're in ```home/Username/huggingface/``` now, and/or ```ls``` to see what's in this new directory. 
 
 ![huggingface](/images/huggingface.png)
 ```bash
 cat huggingface.sbatch
 ```
-to see our sbatch file. EXPLANATION
+to see our sbatch file. sbatch is the way we communicate with Slurm, the job scheduler on our clusters. Because HPC systems are shared and people often need the same resources at the same time, a scheduler schedules job times for people based on the requests they make in their sbatch file (smaller jobs get scheduled faster). Our sbatch file looks like this:
+```bash
+#!/bin/bash						# tells the computer what type of program this is. This will appear at the start of all sbatch (and bash) scripts
+#SBATCH --job-name=huggingface				# gives a name to our job. This can be anything, but like most things in programming, it's good to be descriptive
+#SBATCH --output=/home/%u/out/huggingface.%j		# slurm automatically produces two types of outputs from jobs. These can help you debug if things go wrong. Here I'm routing them to the directories we created earlier.
+#SBATCH --error=/home/%u/err/huggingface.%j		# the err file is usually more helpful, as it outputs any error messages your code produces. Because you're submitting your job and not running interactively, you don't get to see these errors as they happen
+#SBATCH -c 1						# tells slurm to run the job on 1 core. Unless you've parallelized your code so it can run separate processes on separate hardware, this will usually be 1
+#SBATCH --mem=32GB					# tells slurm how much memory to use. For many users, this is the primary benefit of hpc. My pretty beefy machine at home has 32 GB of RAM, and that's probably 2-4x what most people have. However, I couldn't use all those 32GB for a job, because the computer itself needs memory to run. On an hpc system, you can devote more memory (and exactly the amount) you need for a job. If jobs are failing on your personal machines, you may ***need*** hpc to do your research.
+```
 
 Now
 ```bash
 cat huggingface.py
 ```
-to see our python code. EXPLANATION
+to see our python code. It too is relatively straightforward. We import a couple packages at the top which give us functionality beyond base python (here to read our filesystem and create jsons). We then tell it where our corpus is and read it in. After that, we import language models from huggingface. We tell huggingface what we want it to do with our corpus and then perform the process. And finally we export all of that data to json, which we can check out in a bit.
 
-Now that we know what they do, these are all set up to run:
+Now that we know what they do, these are all set up to run. On Sherlock, you would just type:
 ```bash
 sbatch huggingface.sbatch
 ```
+to run the script and:
 ```bash
 watch squeue -u $USER
+```
+to watch the queue while it completes. Because of the slightly different set-up of Farmshare, I had to create an virtual environment to run the script. So here, we need to:
+```bash
+cd /farmshare/home/groups/srcc/cesta_workshop/huggingface/
+```
+to move to that environment which, if you ```ls``` you'll see the directory looks almost identical to the one we just saw. ```cat``` the files and you'll see some slight differences, if you're curious. But since everything is set-up, I can just 
+```bash
+sbatch huggingface.sbatch
+```
+to run the script and:
+```bash
+watch squeue -u $USER
+```
+Because I am in a directory with a different huggingface.sbatch file than the one in your home directory, it will run this one, not the one in home. Or I could have stayed in home and directed it to run this sbatch file with
+```bash
+sbatch /farmshare/home/groups/srcc/cesta_workshop/huggingface/huggingface.sbatch
 ```
