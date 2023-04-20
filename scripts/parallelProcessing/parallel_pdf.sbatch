@@ -2,7 +2,7 @@
 #SBATCH --job-name=pdf
 #SBATCH --output=/home/users/%u/out/pdf.%j.out
 #SBATCH --error=/home/users/%u/err/pdf.%j.err
-#SBATCH -p owners
+#SBATCH -p hns
 #SBATCH --ntasks=1 # Run a single task 
 #SBATCH --mem-per-cpu=8gb # Memory per processor 
 #SBATCH --array=1-2
