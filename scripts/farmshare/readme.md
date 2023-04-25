@@ -41,7 +41,8 @@ direct, non-graphical way of interacting with your computer. The architecture un
 ```bash
 pwd
 ```
-and you will see something like ```/home/yourUsername/```. ```pwd``` stand for "print working directory" and it tells you "where you are located" in your computer. On a graphical system, this would be like the file you have open in 
+and you will see something like ```/home/yourUsername/```. ```pwd``` stands for "print working directory" and it tells you "where you are located" in your computer. On a graphical system, this would be like 
+the file you have open in 
 File Explorer. Our directory is empty right now, so let's create some directories (or folders):
 ```bash
 mkdir out/ err/ outputs/
@@ -85,7 +86,7 @@ scheduler schedules job times for people based on the requests they make in thei
 #SBATCH -c 1						# tells slurm to run the job on 1 core. Unless you've parallelized your code so it can run separate processes on separate hardware, this will usually be 1
 #SBATCH --mem=32GB					# tells slurm how much memory to use. For many users, this is the primary benefit of hpc. My pretty beefy machine at home has 32 GB of RAM, and that's probably 2-4x what most people have. However, I couldn't use all those 32GB for a job, because the computer itself needs memory to run. On an hpc system, you can devote more memory (and exactly the amount) you need for a job. If jobs are failing on your personal machines, you may ***need*** hpc to do your research.
 											# Everything below here (the lines without #s) are shell commands and not communicating with slurm. That means you 
-could tell it to ```cd``` or any other number of the commands we've learned today. 
+could tell it to ```cd``` or any other number of the commands we have learned today. 
 source /farmshare/home/groups/srcc/cesta_workshop/miniconda3/bin/activate		# activates the anaconda environment I set up, which basically contains the python libraries we invoke in our py 
 script
 python3 /farmshare/home/groups/srcc/cesta_workshop/huggingface/huggingface.py		# runs our py script with python3
