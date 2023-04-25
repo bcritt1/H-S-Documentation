@@ -126,7 +126,7 @@ with open('/home/{}/outputs/data.json'.format(user), 'w', encoding='utf-8') as f
     json.dump(str(entities), f, ensure_ascii=False, indent=4)
 ```
 
-Now that we know what they do, these are all set up to run.
+Now that we know what they do, the scripts are ready to run. We submit the .sbatch file to Slurm with the sbatch command. The sbatch, in turn, give Slurm directions and tells it to run our .py file.
 ```bash
 sbatch huggingface.sbatch
 ```
