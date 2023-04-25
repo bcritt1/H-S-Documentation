@@ -42,28 +42,41 @@ direct, non-graphical way of interacting with your computer. The architecture un
 pwd
 ```
 and you will see something like ```/home/yourUsername/```. ```pwd``` stand for "print working directory" and it tells you "where you are located" in your computer. On a graphical system, this would be like the file you have open in 
-File Explorer. Our directory is empty right now, so let's grab some files with a program called subversion, which will go to the github repo we are at, download what's there, and throw the content into a new directory:
-```bash
-svn export https://github.com/bcritt1/H-S-Documentation/trunk/scripts/pos_ner/python/huggingface/ huggingface
-``` 
-![hugpull](/images/hugpull.png)
-You'll see a list of things the program downloaded once the program runs.
-While we're setting things up, let's create a few more directories:
+File Explorer. Our directory is empty right now, so let's create some directories (or folders):
 ```bash
 mkdir out/ err/ outputs/
 ```
+which reads as "make directory" and then the directories you want to make. 
 Now type:
 ```bash
 ls
 ```
-which stands for "list", and you should now see our "huggingface" directory, along with "out", "err", and "outputs. If you type ```cd hug``` then the ```Tab``` button, the shell will complete your command to ```cd huggingface```. Because ```cd``` means "change 
-directory", when you press ```Enter```, you will move into the huggingface directory. You can pwd to confirm you're in ```home/Username/huggingface/``` now, and/or ```ls``` to see what's in this new directory. 
+which stands for "list", and you should now see our "out", "err", and "outputs" directories. If you type ```cd out``` then the ```Tab``` button, the shell will complete your command to ```cd outputs```. 
+Because ```cd``` means "change 
+directory", when you press ```Enter```, you will move into the "outputs" directory. You can```pwd``` to confirm you're in ```home/Username/outputs/``` now, a place that didn't exist until you made it a 
+second ago! We made this and the other directories because we're going to be directing the outputs of our script to them in a second. 
 
-![huggingface](/images/huggingface.png)
+## Exploring and Running Code
+To get to our scripts, which I've set up already for the purposes of 
+time, we need to: 
+
+```bash
+cd /farmshare/home/groups/srcc/cesta_workshop/
+```
+to move there, If you ```ls``` you'll a few directories: "corpus", "huggingface", and "conda". 
+
+![cestadir](/images/cestadir.png)
+
+The first contains a sample corpus representing the collected works of Ralph Waldo Emerson. These are our inputs, the material we are feeding into our script: I had this corpus on hand, but it could be 
+any collection of texts you want to investigate. "conda" contains an environment that I created that holds the different libraries we'll need to execute our script: normally, you may be doing some of this 
+work, but for time, I did it. That said, my script library should make a lot of this labor "plug & play", so the technical barrier should be relatively low regardless. Finally, the "huggingface" directory 
+holds our scripts. Let's ```cd``` there.
+
 ```bash
 cat huggingface.sbatch
 ```
-to see our sbatch file. sbatch is the way we communicate with Slurm, the job scheduler on our clusters. Because HPC systems are shared and people often need the same resources at the same time, a scheduler schedules job times for people based on the requests they make in their sbatch file (smaller jobs get scheduled faster). Our sbatch file looks like this:
+to see our sbatch file. The sbatch file is the way we communicate with Slurm, the job scheduler on our clusters. Because HPC systems are shared and people often need the same resources at the same time, a 
+scheduler schedules job times for people based on the requests they make in their sbatch file (smaller jobs get scheduled faster). Our sbatch file looks like this:
 ```bash
 #!/bin/bash						# tells the computer what type of program this is. This will appear at the start of all sbatch (and bash) scripts
 #SBATCH --job-name=huggingface				# gives a name to our job. This can be anything, but like most things in programming, it's good to be descriptive
@@ -71,15 +84,19 @@ to see our sbatch file. sbatch is the way we communicate with Slurm, the job sch
 #SBATCH --error=/home/%u/err/huggingface.%j		# the err file is usually more helpful, as it outputs any error messages your code produces. Because you're submitting your job and not running interactively, you don't get to see these errors as they happen
 #SBATCH -c 1						# tells slurm to run the job on 1 core. Unless you've parallelized your code so it can run separate processes on separate hardware, this will usually be 1
 #SBATCH --mem=32GB					# tells slurm how much memory to use. For many users, this is the primary benefit of hpc. My pretty beefy machine at home has 32 GB of RAM, and that's probably 2-4x what most people have. However, I couldn't use all those 32GB for a job, because the computer itself needs memory to run. On an hpc system, you can devote more memory (and exactly the amount) you need for a job. If jobs are failing on your personal machines, you may ***need*** hpc to do your research.
+											# Everything below here (the lines without #s) are shell commands and not communicating with slurm. That means you 
+could tell it to ```cd``` or any other number of the commands we've learned today. 
+source /farmshare/home/groups/srcc/cesta_workshop/miniconda3/bin/activate		# activates the anaconda environment I set up, which basically contains the python libraries we invoke in our py 
+script
+python3 /farmshare/home/groups/srcc/cesta_workshop/huggingface/huggingface.py		# runs our py script with python3
 ```
-
 Now
 ```bash
 cat huggingface.py
 ```
 to see our python code. It too is relatively straightforward. We import a couple packages at the top which give us functionality beyond base python (here to read our filesystem and create jsons). We then tell it where our corpus is and read it in. After that, we import language models from huggingface. We tell huggingface what we want it to do with our corpus and then perform the process. And finally we export all of that data to json, which we can check out in a bit.
 
-Now that we know what they do, these are all set up to run. On Sherlock, you would just type:
+Now that we know what they do, these are all set up to run.
 ```bash
 sbatch huggingface.sbatch
 ```
@@ -87,19 +104,22 @@ to run the script and:
 ```bash
 watch squeue -u $USER
 ```
-to watch the queue while it completes. Because of the slightly different set-up of Farmshare, I had to create an virtual environment to run the script. So here, we need to:
+to watch the queue while it completes. 
+
+## Outputs
+
+Because of the file paths we supplied in the .sbatch and .py files, our *.out and *.err files will be routed to home/userName/out and */err, and our outputs will go to home/userName/outputs. The script is 
+going to take 10 or more minutes to complete, but we can ```cd``` to that location to check out our output when it's done. Or you can even check it out from here by giving it a filepath:
 ```bash
-cd /farmshare/home/groups/srcc/cesta_workshop/huggingface/
+head /home/userName/outputs/data.json
 ```
-to move to that environment which, if you ```ls``` you'll see the directory looks almost identical to the one we just saw. ```cat``` the files and you'll see some slight differences, if you're curious. But since everything is set-up, I can just 
-```bash
-sbatch huggingface.sbatch
-```
-to run the script and:
-```bash
-watch squeue -u $USER
-```
-Because I am in a directory with a different huggingface.sbatch file than the one in your home directory, it will run this one, not the one in home. Or I could have stayed in home and directed it to run this sbatch file with
-```bash
-sbatch /farmshare/home/groups/srcc/cesta_workshop/huggingface/huggingface.sbatch
-```
+![outputs](/images/outputs.png)
+What we see is all Named Entities (proper nouns, more or less) in our inputs categorized as a type of entity, and a confidence score of how likely the computer things it is that they actually are that type 
+of entity. This type of output can be the basis for interesting analyses in its own right (What things interest this writer? Are they more interested in people or political entities?) or as the basis for 
+secondary analyses (extracting everything labelled as a place and mapping them). 
+
+## Wrap-Up
+This process took about 15 minutes on 32 GB of RAM, working on a relatively small (130 works) corpus. Compute time will 
+often expand exponentially with inputs, so anyone looking to do serious digital research of this type may *need* to use HPC resources. I'm hoping this workshop gave you an idea of what HPC is, how it works, 
+and how you can take advantage of it here at Stanford with a relatively low barrier to entry. Remember, on Sherlock Open OnDemand offers an even more user-friendly experience, and I'm always here to help 
+regardless of how you engage with our resources. 
