@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Adapted from Andrew Aklaghi's script here: https://programminghistorian.org/en/lessons/OCR-and-Machine-Translation
+
 DIR=/home/users/bcritt/pdfs/
 FILES=/home/users/bcritt/pdfs/*.pdf
 for f in $FILES;
