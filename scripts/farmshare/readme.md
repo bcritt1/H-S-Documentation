@@ -16,6 +16,8 @@ knowledge graphing, mapping references, etc.
 If you are interested in doing this process on your own data, this workshop is adapted from a [tutorial](https://github.com/bcritt1/H-S-Documentation/tree/main/scripts/pos_ner/python/huggingface) for Sherlock, the research HPC cluster at 
 Stanford. This is part of a larger script [library](https://github.com/bcritt1/H-S-Documentation/tree/main/scripts) with easy to implement scripts for common computational text analysis processes.
 
+While you can jump onto Farmshare without even registering, it is a relatively small cluster that isn't meant for heavy-duty research. To get on Sherlock, you need to be approved by a PI, but this can be provided by your advisor or potentially CESTA given your affiliation.
+
 If you go through today and decide this command line interface (CLI) is too much for you, Sherlock also has a really neat service called [Open 
 OnDemand](https://login.sherlock.stanford.edu/pun/sys/dashboard) where you can work in a graphical user interface (GUI) like RStudio or jupyter 
 notebooks. This also has the benefit of being interactive, so instead of, say, outputting visualizations as jpegs in a batch script, you can produce interactive visualizations and iterate mid-script in OpenOndemand. It is, however, a 
