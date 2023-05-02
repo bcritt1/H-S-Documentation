@@ -4,12 +4,14 @@ Farmshare is an open high powered computing (HPC) learning environment where any
 
 ## Overview
 
-In this workshop, we'll be running a named entity recognizer on Ralph Waldo Emerson's ouevre. We'll be using a machine learning platform called huggingface, through which we will leverage a large language model called "BERT" 
-(Bidirectional Encoder Representations from Transformers). BERT is a cutting edge model that rivals GPT in analytical tasks (though it can't generate responses like GPT). Our output will be a .json file with all of the named entities 
+In this workshop, we'll be running a named entity recognizer on Ralph Waldo Emerson's ouevre. We'll be using a machine learning platform called huggingface, through which we will leverage a large language 
+model called "RoBERTa", which is based on "BERT" 
+(Bidirectional Encoder Representations from Transformers). RoBERTa is a cutting edge model that rivals GPT in analytical tasks (though it can't generate responses like GPT). Our output will be a .json file 
+with all of the named entities 
 (important people, places, things) in this text corpus. Having the computer encode and return certain types of information from large text corpora is an important retrieval task for doing higher level things like social network analysis, 
 knowledge graphing, mapping references, etc. 
 
-## Farmshare vs Sherlock
+## [Farmshare](https://web.stanford.edu/group/farmshare/cgi-bin/wiki/index.php/Main_Page) vs [Sherlock](https://www.sherlock.stanford.edu/docs/)
 
 If you are interested in doing this process on your own data, this workshop is adapted from a [tutorial](https://github.com/bcritt1/H-S-Documentation/tree/main/scripts/pos_ner/python/huggingface) for Sherlock, the research HPC cluster at 
 Stanford. This is part of a larger script [library](https://github.com/bcritt1/H-S-Documentation/tree/main/scripts) with easy to implement scripts for common computational text analysis processes.
