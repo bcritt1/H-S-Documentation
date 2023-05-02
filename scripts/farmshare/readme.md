@@ -155,3 +155,7 @@ This process took about 15 minutes on 32 GB of RAM, working on a relatively smal
 often expand exponentially with inputs, so anyone looking to do serious digital research of this type may *need* to use HPC resources. I'm hoping this workshop gave you an idea of what HPC is, how it works, 
 and how you can take advantage of it here at Stanford with a relatively low barrier to entry. Remember, on Sherlock Open OnDemand offers an even more user-friendly experience, and I'm always here to help 
 regardless of how you engage with our resources. 
+
+My git [repo](https://github.com/bcritt1/H-S-Documentation/blob/main/scripts/farmshare/readme.md) contains scripts and documentation for many processes, tailored for use on Sherlock. Sherlock itself has a lot of good [documentation](https://www.sherlock.stanford.edu/docs/). Finally, Quinn Dombrowski has been working on a lot of good information for Humanists in HPC [here](https://dh-stanford.github.io/hpcforhumanists/intro.html).
+
+[bcritt@stanford.edu](mailto:bcritt@stanford.edu) with questions.
