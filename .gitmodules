@@ -1,0 +1,3 @@
+[submodule "scripts/translate"]
+	path = scripts/translate
+	url = https://github.com/bcritt1/translate
