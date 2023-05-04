@@ -10,3 +10,6 @@
 [submodule "scripts/geocoding_python"]
 	path = scripts/geocoding_python
 	url = https://github.com/bcritt1/geocoding_python
+[submodule "scripts/geocoding_r"]
+	path = scripts/geocoding_r
+	url = https://github.com/bcritt1/geocoding_r
