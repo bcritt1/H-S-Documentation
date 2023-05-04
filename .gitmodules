@@ -22,3 +22,6 @@
 [submodule "scripts/pos_ner_r"]
 	path = scripts/pos_ner_r
 	url = https://github.com/bcritt1/pos_ner_r
+[submodule "scripts/tfidf_python"]
+	path = scripts/tfidf_python
+	url = https://github.com/bcritt1/tfidf_python
