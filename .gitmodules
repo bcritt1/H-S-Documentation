@@ -4,9 +4,6 @@
 [submodule "pos_ner"]
 	path = pos_ner
 	url = https://github.com/bcritt1/pos_ner
-[submodule "scripts/pos_ner"]
-	path = scripts/pos_ner
-	url = https://github.com/bcritt1/pos_ner
 [submodule "scripts/geocoding_python"]
 	path = scripts/geocoding_python
 	url = https://github.com/bcritt1/geocoding_python
