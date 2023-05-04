@@ -19,3 +19,6 @@
 [submodule "scripts/pos_ner_python_nltk"]
 	path = scripts/pos_ner_python_nltk
 	url = https://github.com/bcritt1/pos_ner_python_nltk
+[submodule "scripts/pos_ner_python_spacy"]
+	path = scripts/pos_ner_python_spacy
+	url = https://github.com/bcritt1/pos_ner_python_spacy
