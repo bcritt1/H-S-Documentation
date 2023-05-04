@@ -40,3 +40,6 @@
 [submodule "scripts/transcribe"]
 	path = scripts/transcribe
 	url = https://github.com/bcritt1/transcribe
+[submodule "scripts/word_embedding_python"]
+	path = scripts/word_embedding_python
+	url = https://github.com/bcritt1/word_embedding_python
