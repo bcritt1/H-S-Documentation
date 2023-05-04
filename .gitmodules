@@ -43,3 +43,6 @@
 [submodule "scripts/word_embedding_python"]
 	path = scripts/word_embedding_python
 	url = https://github.com/bcritt1/word_embedding_python
+[submodule "scripts/word_embedding_r"]
+	path = scripts/word_embedding_r
+	url = https://github.com/bcritt1/word_embedding_r
