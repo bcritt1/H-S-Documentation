@@ -25,3 +25,6 @@
 [submodule "scripts/tfidf_python"]
 	path = scripts/tfidf_python
 	url = https://github.com/bcritt1/tfidf_python
+[submodule "scripts/farmshare"]
+	path = scripts/farmshare
+	url = https://github.com/bcritt1/farmshare
