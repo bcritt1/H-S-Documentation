@@ -34,3 +34,6 @@
 [submodule "scripts/parallelProcessing"]
 	path = scripts/parallelProcessing
 	url = https://github.com/bcritt1/parallelProcessing
+[submodule "scripts/text_cleaning"]
+	path = scripts/text_cleaning
+	url = https://github.com/bcritt1/text_cleaning
