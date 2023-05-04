@@ -28,3 +28,6 @@
 [submodule "scripts/farmshare"]
 	path = scripts/farmshare
 	url = https://github.com/bcritt1/farmshare
+[submodule "scripts/ocr"]
+	path = scripts/ocr
+	url = https://github.com/bcritt1/ocr
