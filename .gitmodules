@@ -31,3 +31,6 @@
 [submodule "scripts/ocr"]
 	path = scripts/ocr
 	url = https://github.com/bcritt1/ocr
+[submodule "scripts/parallelProcessing"]
+	path = scripts/parallelProcessing
+	url = https://github.com/bcritt1/parallelProcessing
