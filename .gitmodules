@@ -16,3 +16,6 @@
 [submodule "scripts/pos_ner_python_huggingface"]
 	path = scripts/pos_ner_python_huggingface
 	url = https://github.com/bcritt1/pos_ner_python_huggingface
+[submodule "scripts/pos_ner_python_nltk"]
+	path = scripts/pos_ner_python_nltk
+	url = https://github.com/bcritt1/pos_ner_python_nltk
