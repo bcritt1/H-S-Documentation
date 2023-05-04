@@ -49,3 +49,6 @@
 [submodule "scripts/tokenizer_python_nltk"]
 	path = scripts/tokenizer_python_nltk
 	url = https://github.com/bcritt1/tokenizer_python_nltk
+[submodule "scripts/tokenizer_r"]
+	path = scripts/tokenizer_r
+	url = https://github.com/bcritt1/tokenizer_r
