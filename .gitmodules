@@ -52,3 +52,6 @@
 [submodule "scripts/tokenizer_r"]
 	path = scripts/tokenizer_r
 	url = https://github.com/bcritt1/tokenizer_r
+[submodule "scripts/IPYNBs"]
+	path = scripts/IPYNBs
+	url = https://github.com/bcritt1/IPYNBs
