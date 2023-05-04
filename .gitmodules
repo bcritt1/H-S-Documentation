@@ -46,3 +46,6 @@
 [submodule "scripts/word_embedding_r"]
 	path = scripts/word_embedding_r
 	url = https://github.com/bcritt1/word_embedding_r
+[submodule "scripts/tokenizer_python_nltk"]
+	path = scripts/tokenizer_python_nltk
+	url = https://github.com/bcritt1/tokenizer_python_nltk
