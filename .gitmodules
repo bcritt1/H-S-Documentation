@@ -13,3 +13,6 @@
 [submodule "scripts/geocoding_r"]
 	path = scripts/geocoding_r
 	url = https://github.com/bcritt1/geocoding_r
+[submodule "scripts/pos_ner_python_huggingface"]
+	path = scripts/pos_ner_python_huggingface
+	url = https://github.com/bcritt1/pos_ner_python_huggingface
