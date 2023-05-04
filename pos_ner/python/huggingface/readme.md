@@ -1,4 +1,4 @@
-# huggingface NER Workflow
+# Huggingface NER Workflow
 
 This repo contains two simple files that execute huggingface's parts of speech and named entity 
 [taggers](https://huggingface.co/docs/transformers/task_summary#named-entity-recognition) on a 
