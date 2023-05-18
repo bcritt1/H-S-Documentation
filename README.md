@@ -1,4 +1,4 @@
-# Stanford Research Computing Script Repo
+# Stanford Research Computing Script Library
 
 ***THIS REPO IS BEING REORGANIZED, SO SOME DOCUMENTATION LINKS MAY BE BROKEN. EVERYTHING ELSE SHOULD FUNCTION CORRECTLY***
 
