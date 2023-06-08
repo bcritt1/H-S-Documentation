@@ -55,3 +55,6 @@
 [submodule "scripts/IPYNBs"]
 	path = scripts/IPYNBs
 	url = https://github.com/bcritt1/IPYNBs
+[submodule "scripts/transfer_learning"]
+	path = scripts/transfer_learning
+	url = https://github.com/bcritt1/transfer_learning
