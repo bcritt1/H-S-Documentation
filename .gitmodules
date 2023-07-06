@@ -58,3 +58,6 @@
 [submodule "scripts/transfer_learning"]
 	path = scripts/transfer_learning
 	url = https://github.com/bcritt1/transfer_learning
+[submodule "scripts/llms"]
+	path = scripts/llms
+	url = https://github.com/bcritt1/llms.git
