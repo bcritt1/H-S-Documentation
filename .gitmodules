@@ -61,3 +61,6 @@
 [submodule "scripts/llms"]
 	path = scripts/llms
 	url = https://github.com/bcritt1/llms.git
+[submodule "scripts/text_classification"]
+	path = scripts/text_classification
+	url = https://github.com/bcritt1/text_classification.git
