@@ -64,6 +64,6 @@
 [submodule "scripts/text_classification"]
 	path = scripts/text_classification
 	url = https://github.com/bcritt1/text_classification.git
-[submodule "scripts/utility"]
-	path = scripts/utility
+[submodule "utility"]
+	path = utility
 	url = https://github.com/bcritt1/utility.git
