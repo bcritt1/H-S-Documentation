@@ -67,3 +67,6 @@
 [submodule "scripts/utility"]
 	path = scripts/utility
 	url = https://github.com/bcritt1/utility.git
+[submodule "scripts/images"]
+	path = scripts/images
+	url = https://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@github.com/bcritt1/images.git
