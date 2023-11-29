@@ -73,3 +73,6 @@
 [submodule "scripts/H-S-Documentation"]
 	path = scripts/H-S-Documentation
 	url = https://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@github.com/bcritt1/H-S-Documentation.git
+[submodule "scripts/topic_modeling"]
+	path = scripts/topic_modeling
+	url = https://github.com/bcritt1/topic_modeling
