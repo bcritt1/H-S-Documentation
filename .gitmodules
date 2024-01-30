@@ -73,3 +73,6 @@
 [submodule "scripts/topic_modeling"]
 	path = scripts/topic_modeling
 	url = https://github.com/bcritt1/topic_modeling
+[submodule "scripts/timestamp"]
+	path = scripts/timestamp
+	url = https://github.com/bcritt1/timestamp.git
