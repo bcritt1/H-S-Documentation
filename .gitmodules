@@ -61,9 +61,6 @@
 [submodule "scripts/llms"]
 	path = scripts/llms
 	url = https://github.com/bcritt1/llms.git
-[submodule "scripts/text_classification"]
-	path = scripts/text_classification
-	url = https://github.com/bcritt1/text_classification.git
 [submodule "scripts/utility"]
 	path = scripts/utility
 	url = https://github.com/bcritt1/utility.git
@@ -76,3 +73,6 @@
 [submodule "scripts/timestamp"]
 	path = scripts/timestamp
 	url = https://github.com/bcritt1/timestamp.git
+[submodule "scripts/sentiment_analysis_python"]
+	path = scripts/sentiment_analysis_python
+	url = https://github.com/bcritt1/sentiment_analysis_python.git
