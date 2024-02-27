@@ -76,3 +76,6 @@
 [submodule "scripts/sentiment_analysis_python"]
 	path = scripts/sentiment_analysis_python
 	url = https://github.com/bcritt1/sentiment_analysis_python.git
+[submodule "scripts/sentiment_analysis_r"]
+	path = scripts/sentiment_analysis_r
+	url = https://github.com/bcritt1/sentiment_analysis_r.git
