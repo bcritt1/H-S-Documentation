@@ -79,3 +79,6 @@
 [submodule "scripts/sentiment_analysis_r"]
 	path = scripts/sentiment_analysis_r
 	url = https://github.com/bcritt1/sentiment_analysis_r.git
+[submodule "scripts/geocode"]
+	path = scripts/geocode
+	url = https://github.com/AnnieKLamar/geocode.git
