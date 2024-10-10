@@ -1,0 +1,72 @@
+[submodule "scripts/farmshare"]
+	path = scripts/farmshare
+	url = https://github.com/bcritt1/farmshare
+[submodule "scripts/geocoding_python"]
+	path = scripts/geocoding_python
+	url = https://github.com/bcritt1/geocoding_python
+[submodule "scripts/geocoding_r"]
+	path = scripts/geocoding_r
+	url = https://github.com/bcritt1/geocoding_r
+[submodule "scripts/IPYNBs"]
+	path = scripts/IPYNBs
+	url = https://github.com/bcritt1/IPYNBs
+[submodule "scripts/llms"]
+	path = scripts/llms
+	url = https://github.com/bcritt1/llms
+[submodule "scripts/ocr"]
+	path = scripts/ocr
+	url = https://github.com/bcritt1/ocr
+[submodule "scripts/pos_ner_python_huggingface"]
+	path = scripts/pos_ner_python_huggingface
+	url = https://github.com/bcritt1/pos_ner_python_huggingface
+[submodule "scripts/pos_ner_python_nltk"]
+	path = scripts/pos_ner_python_nltk
+	url = https://github.com/bcritt1/pos_ner_python_nltk
+[submodule "scripts/pos_ner_python_spacy"]
+	path = scripts/pos_ner_python_spacy
+	url = https://github.com/bcritt1/pos_ner_python_spacy
+[submodule "scripts/pos_ner_r"]
+	path = scripts/pos_ner_r
+	url = https://github.com/bcritt1/pos_ner_r
+[submodule "scripts/sentiment_analysis_python"]
+	path = scripts/sentiment_analysis_python
+	url = https://github.com/bcritt1/sentiment_analysis_python
+[submodule "scripts/sentiment_analysis_r"]
+	path = scripts/sentiment_analysis_r
+	url = https://github.com/bcritt1/sentiment_analysis_r
+[submodule "scripts/tfidf_python"]
+	path = scripts/tfidf_python
+	url = https://github.com/bcritt1/tfidf_python
+[submodule "scripts/timestamp"]
+	path = scripts/timestamp
+	url = https://github.com/bcritt1/timestamp
+[submodule "scripts/tokenizer_python_nltk"]
+	path = scripts/tokenizer_python_nltk
+	url = https://github.com/bcritt1/tokenizer_python_nltk
+[submodule "scripts/tokenizer_r"]
+	path = scripts/tokenizer_r
+	url = https://github.com/bcritt1/tokenizer_r
+[submodule "scripts/topic_modeling"]
+	path = scripts/topic_modeling
+	url = https://github.com/bcritt1/topic_modeling
+[submodule "scripts/transcribe"]
+	path = scripts/transcribe
+	url = https://github.com/bcritt1/transcribe
+[submodule "scripts/transfer_learning"]
+	path = scripts/transfer_learning
+	url = https://github.com/bcritt1/transfer_learning
+[submodule "scripts/translate"]
+	path = scripts/translate
+	url = https://github.com/bcritt1/translate
+[submodule "scripts/utility"]
+	path = scripts/utility
+	url = https://github.com/bcritt1/utility
+[submodule "scripts/word_embedding_python"]
+	path = scripts/word_embedding_python
+	url = https://github.com/bcritt1/word_embedding_python.git
+[submodule "scripts/word_embedding_r"]
+	path = scripts/word_embedding_r
+	url = https://github.com/bcritt1/word_embedding_r.git
+[submodule "scripts/geocode"]
+	path = scripts/geocode
+	url = https://github.com/AnnieKLamar/geocode.git
